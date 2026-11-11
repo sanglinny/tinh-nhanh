@@ -32,9 +32,12 @@ export function flatTierBill(tariff, kwh, tierIndex) {
   return { rows: [{ from: 0, to: null, price, kwh, amount: subtotal }], subtotal, vat, total: subtotal + vat, scale: 1 };
 }
 
-export function householdsFor(persons, tariff) {
+// Renters only: "cứ 4 người = 1 hộ; 1 người = 1/4 định mức", so 6 people = 1.5 households
+// (fractional, not rounded up). A family living in its own home is 1 household however many people.
+export function householdsFor(persons, tariff, { renter = true } = {}) {
+  if (!renter) return 1;
   const per = tariff.persons_per_household || 4;
-  return Math.max(1, Math.ceil(persons / per));
+  return Math.max(1 / per, persons / per);
 }
 
 // Shared meter for a boarding house: bill the meter once with the renter rule,

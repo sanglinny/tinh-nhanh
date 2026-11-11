@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
 <meta name="theme-color" content="#0f766e">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -24,28 +25,37 @@
 <main class="wrap">
   <h1>Tính tiền điện sinh hoạt theo bậc thang</h1>
   <p class="lede" id="tariff-meta">Đang tải biểu giá…</p>
+  <noscript><p class="note">Công cụ cần JavaScript để tính. Hãy bật JavaScript trong trình duyệt.</p></noscript>
 
-  <section class="card">
+  <div class="tabs" role="tablist">
+    <button type="button" role="tab" id="tab-home" aria-controls="panel-home" aria-selected="true">Gia đình / người thuê</button>
+    <button type="button" role="tab" id="tab-rooms" aria-controls="panel-rooms" aria-selected="false">Chia tiền phòng trọ</button>
+  </div>
+
+  <section class="card" id="panel-home" role="tabpanel" aria-labelledby="tab-home">
     <form class="calc" id="f-home">
       <div class="row">
         <label>Số điện tiêu thụ (kWh)
           <input id="kwh" type="number" inputmode="decimal" min="0" step="1" value="250" required>
         </label>
-        <label>Số người đăng ký sử dụng <small>người thuê nhà: 4 người = 1 hộ</small>
+        <label>Bạn là
+          <select id="who">
+            <option value="home">Hộ gia đình ở nhà của mình</option>
+            <option value="renter">Người thuê nhà, chủ nhà đã khai báo số người</option>
+            <option value="undeclared">Thuê dưới 12 tháng, chủ nhà chưa khai báo</option>
+          </select>
+        </label>
+        <label id="persons-wrap" hidden>Số người thuê đã khai báo <small>4 người = 1 hộ; 1 người = 1/4 định mức</small>
           <input id="persons" type="number" inputmode="numeric" min="1" value="4">
         </label>
       </div>
-      <label style="font-weight:400;display:flex;gap:8px;align-items:center">
-        <input id="undeclared" type="checkbox" style="width:auto"> Thuê nhà dưới 12 tháng và chủ nhà chưa kê khai số người thuê với điện lực
-      </label>
       <button type="submit">Tính tiền điện</button>
     </form>
     <div class="result" id="r-home" aria-live="polite"></div>
   </section>
 
-  <h2>Chia tiền điện phòng trọ (chung một đồng hồ tổng)</h2>
-  <p class="muted">Nhập số kWh đồng hồ riêng và số người của từng phòng. Hóa đơn được tính một lần theo bậc thang cho cả nhà, rồi chia theo tỷ lệ kWh.</p>
-  <section class="card">
+  <section class="card" id="panel-rooms" role="tabpanel" aria-labelledby="tab-rooms" hidden>
+    <p class="muted" style="margin-top:0">Một đồng hồ tổng cho cả nhà trọ. Nhập kWh đồng hồ riêng và số người của từng phòng: hóa đơn được tính một lần theo bậc thang (người thuê: 4 người = 1 hộ), rồi chia theo tỷ lệ kWh.</p>
     <form class="calc" id="f-rooms">
       <div class="rooms" id="rooms"></div>
       <div><button type="button" class="ghost" id="add-room">+ Thêm phòng</button></div>
@@ -54,12 +64,11 @@
     <div class="result" id="r-rooms" aria-live="polite"></div>
   </section>
 
-  <h2>Gợi ý</h2>
-  <div class="aff" data-aff="energy-saving" hidden>
+  <div class="aff" data-aff="energy-saving" hidden style="margin-top:18px">
     <strong data-aff-title></strong>
     <p data-aff-text class="muted"></p>
     <a data-aff-link></a>
-    <p class="disclosure">Liên kết tiếp thị: chúng tôi có thể nhận hoa hồng nếu bạn mua qua liên kết này, giá bạn trả không đổi.</p>
+    <p class="disclosure">Tính Nhanh có thể nhận hoa hồng nếu bạn mua qua liên kết này. Giá bạn trả không đổi. Việc giới thiệu không ảnh hưởng đến kết quả tính toán.</p>
   </div>
 
   <h2>Quy định cho người thuê nhà</h2>
@@ -96,13 +105,14 @@ function table(rows) {
 document.getElementById("f-home").addEventListener("submit", (ev) => {
   ev.preventDefault();
   const kwh = Number(document.getElementById("kwh").value);
+  const who = document.getElementById("who").value;
   const persons = Number(document.getElementById("persons").value) || 1;
-  const undeclared = document.getElementById("undeclared").checked;
-  const households = householdsFor(persons, T);
+  const undeclared = who === "undeclared";
+  const households = householdsFor(persons, T, { renter: who === "renter" });
   const b = undeclared ? flatTierBill(T, kwh, T.undeclared_renter_tier_index ?? 1) : tierBreakdown(T, kwh, { households });
   const how = undeclared
     ? `Toàn bộ sản lượng tính một giá bậc ${(T.undeclared_renter_tier_index ?? 1) + 1} (${vnd(b.rows[0].price)}/kWh chưa VAT).`
-    : (households > 1 ? `Định mức mỗi bậc được nhân ${households} lần (${persons} người, ${T.persons_per_household} người = 1 hộ).` : "");
+    : (who === "renter" ? `Định mức mỗi bậc × ${num(households, 2)} (${persons} người thuê, ${T.persons_per_household} người = 1 hộ).` : "");
   document.getElementById("r-home").innerHTML =
     `<p class="big">${vnd(b.total)}</p>
      <p class="muted">Gồm ${vnd(b.subtotal)} tiền điện + ${vnd(b.vat)} VAT (${T.vat_percent}%). Trung bình ${vnd(b.total / (kwh || 1))}/kWh. ${how}</p>` +
@@ -136,6 +146,23 @@ document.getElementById("f-rooms").addEventListener("submit", (ev) => {
     `</tbody></table></div>`;
 });
 
+// Tabs; #phong-tro in the URL opens the boarding-house tab directly (for links from articles/videos).
+function showTab(which) {
+  for (const t of ["home", "rooms"]) {
+    document.getElementById("tab-" + t).setAttribute("aria-selected", String(t === which));
+    document.getElementById("panel-" + t).hidden = t !== which;
+  }
+}
+document.getElementById("tab-home").onclick = () => { showTab("home"); history.replaceState(null, "", "#"); };
+document.getElementById("tab-rooms").onclick = () => { showTab("rooms"); history.replaceState(null, "", "#phong-tro"); };
+if (location.hash === "#phong-tro") showTab("rooms");
+document.getElementById("f-rooms").requestSubmit();
+
+const whoEl = document.getElementById("who");
+whoEl.addEventListener("change", () => {
+  document.getElementById("persons-wrap").hidden = whoEl.value !== "renter";
+  document.getElementById("f-home").requestSubmit();
+});
 document.getElementById("f-home").requestSubmit();
 fillAffiliates();
 </script>

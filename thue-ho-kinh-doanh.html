@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
 <meta name="theme-color" content="#0f766e">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -45,7 +46,7 @@
     <strong data-aff-title></strong>
     <p data-aff-text class="muted"></p>
     <a data-aff-link></a>
-    <p class="disclosure">Liên kết tiếp thị: chúng tôi có thể nhận hoa hồng nếu bạn mua qua liên kết này, giá bạn trả không đổi.</p>
+    <p class="disclosure">Tính Nhanh có thể nhận hoa hồng nếu bạn mua qua liên kết này. Giá bạn trả không đổi. Việc giới thiệu không ảnh hưởng đến kết quả tính toán.</p>
   </div>
 
   <div class="note" id="notes" hidden></div>
@@ -106,7 +107,14 @@ document.getElementById("f").addEventListener("submit", (ev) => {
   el.innerHTML = (t.tax == null
       ? `<p class="big">Cần nhập chi phí</p><p class="muted">${escapeHtml(methodText)} Nhập tổng chi phí hợp lý cả năm để tính TNCN. GTGT: ${t.vat == null ? "?" : vnd(t.vat)}.</p>`
       : `<p class="big">${vnd(t.tax)}<span class="muted" style="font-size:1rem"> / năm</span></p>
-         <p class="muted">GTGT ${vnd(t.vat)} (trên toàn bộ doanh thu) + TNCN ${vnd(t.pit)}. ${escapeHtml(methodText)}</p>`) + compare +
+         <dl class="summary">
+           <dt>Tổng doanh thu năm</dt><dd>${vnd(t.total)}</dd>
+           <dt>Phần không tính TNCN (ngưỡng)</dt><dd>${vnd(t.threshold)}</dd>
+           <dt>Thuế GTGT (trên toàn bộ doanh thu)</dt><dd>${vnd(t.vat)}</dd>
+           <dt>Thuế TNCN</dt><dd>${vnd(t.pit)}</dd>
+           <dt>Tổng phải nộp</dt><dd>${vnd(t.tax)}</dd>
+         </dl>
+         <p class="muted">${escapeHtml(methodText)}</p>`) + compare +
     `<div class="table-scroll"><table><thead><tr><th>Ngành</th><th class="num">Doanh thu</th><th class="num">GTGT</th></tr></thead><tbody>` +
     t.rows.map((r) => `<tr><td>${escapeHtml(r.name)}<br><small class="muted">GTGT ${r.vatPct}% · TNCN ${r.pitPct}%</small></td><td class="num">${vnd(r.revenue)}</td><td class="num">${r.vat == null ? "?" : vnd(r.vat)}</td></tr>`).join("") +
     `</tbody></table></div>` +

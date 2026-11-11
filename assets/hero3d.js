@@ -87,10 +87,11 @@ function start() {
   })();
 
   // sway: oscillate around facing the camera instead of spinning (a flat receipt seen edge-on reads as a sliver).
+  // The globe is the subject (centre, larger); bolt and receipt are smaller accents.
   const items = [
-    { obj: bolt, x: -1, y: 0.2, z: 0, spin: 0.5 },
-    { obj: receipt, x: 0, y: 0.45, z: -0.6, sway: 0.55 },
-    { obj: globe, x: 1, y: 0.15, z: 0, spin: 0.25 },
+    { obj: bolt, x: -1, y: 0.1, z: -0.8, spin: 0.3, size: 0.7 },
+    { obj: globe, x: 0, y: 0.3, z: 0.3, spin: 0.15, size: 1.35 },
+    { obj: receipt, x: 1, y: 0.15, z: -0.8, sway: 0.35, size: 0.7 },
   ];
   items.forEach((it) => { it.base = new THREE.Vector3(it.x * 2.6, it.y, it.z); });
   items.forEach((it, i) => { it.obj.position.copy(it.base); it.phase = i * 2.1; scene.add(it.obj); });
@@ -122,7 +123,7 @@ function start() {
     // pulling the camera back (which made them tiny).
     const narrow = w < 600;
     const spread = narrow ? 1.45 : 2.6, scale = narrow ? 0.9 : 1;
-    items.forEach((it) => { it.base.x = it.x * spread; it.obj.position.x = it.base.x; it.obj.scale.setScalar(scale); });
+    items.forEach((it) => { it.base.x = it.x * spread; it.obj.position.x = it.base.x; it.obj.scale.setScalar(scale * (it.size || 1)); });
     camera.position.z = narrow ? 7.2 : 9;
     camera.updateProjectionMatrix();
   }
@@ -142,8 +143,8 @@ function start() {
       it.obj.rotation.y = it.sway != null
         ? Math.sin(t * 0.7 + it.phase) * it.sway * motion
         : it.phase + t * it.spin * motion;
-      it.obj.rotation.x = Math.sin(t * 0.6 + it.phase) * 0.15 * motion;
-      it.obj.position.y = it.base.y + Math.sin(t * 0.9 + it.phase) * 0.15 * motion;
+      it.obj.rotation.x = Math.sin(t * 0.5 + it.phase) * 0.08 * motion;
+      it.obj.position.y = it.base.y + Math.sin(t * 0.7 + it.phase) * 0.08 * motion;
     });
     const p = floorGeo.attributes.position.array;
     for (let i = 0; i < p.length; i += 3) p[i + 1] = -1.6 + Math.sin(p[i] * 0.55 + t * 0.8 * motion) * Math.cos(p[i + 2] * 0.45 + t * 0.6 * motion) * 0.22;

@@ -18,10 +18,17 @@ test("every band is the full width (101–200 is 100 kWh, not 99)", () => {
   assert.equal(tierBreakdown(T, 701).rows.at(-1).price, 3844);
 });
 
-test("renters: 4 people = 1 household, bands double for 5–8 people", () => {
+test("renters: 1 person = 1/4 of the bands (6 people = 1.5 households, not 2)", () => {
   assert.equal(householdsFor(4, T), 1);
-  assert.equal(householdsFor(5, T), 2);
+  assert.equal(householdsFor(6, T), 1.5);
+  assert.equal(householdsFor(8, T), 2);
   assert.equal(tierBreakdown(T, 200, { households: 2 }).subtotal, 200 * 1901);
+  // 6 renters: tier 1 band is 150 kWh
+  assert.equal(tierBreakdown(T, 150, { households: 1.5 }).subtotal, 150 * 1901);
+});
+
+test("a family in its own home is one household regardless of size", () => {
+  assert.equal(householdsFor(6, T, { renter: false }), 1);
 });
 
 test("undeclared short-term renters pay tier 2 for everything", () => {
@@ -30,7 +37,7 @@ test("undeclared short-term renters pay tier 2 for everything", () => {
 
 test("boarding-house split adds up to the bill", () => {
   const s = splitBoardingHouse(T, [{ name: "A", kwh: 120, persons: 2 }, { name: "B", kwh: 80, persons: 1 }, { name: "C", kwh: 150, persons: 3 }]);
-  assert.equal(s.households, 2);
+  assert.equal(s.households, 1.5);   // 6 renters = 1.5 households
   const sum = s.rooms.reduce((x, r) => x + r.share, 0);
   assert.ok(Math.abs(sum - s.bill.total) < 1e-6);
 });

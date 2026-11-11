@@ -2,7 +2,7 @@
   --bg: #f7f7f4;
   --surface: #ffffff;
   --text: #1d1f1c;
-  --muted: #5f645c;
+  --muted: #4b5049;
   --line: #e2e3dd;
   --accent: #0f766e;
   --accent-ink: #ffffff;
@@ -26,6 +26,7 @@
 }
 
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0; background: var(--bg); color: var(--text);
@@ -66,7 +67,8 @@ a.card { display: block; text-decoration: none; color: inherit; }
 a.card:hover { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
 
 /* 3D tilt: ui.js sets --rx/--ry from the pointer; static without JS or with reduced motion. */
-.tilt { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(0);
+.tilt { display: flex !important; flex-direction: column;
+        transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(0);
         transition: transform .25s ease, box-shadow .25s ease; transform-style: preserve-3d; will-change: transform; }
 .tilt:hover { box-shadow: 0 2px 2px rgba(0,0,0,.04), 0 18px 40px -12px rgba(0,0,0,.22); }
 .tilt .icon { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; margin-bottom: 10px;
@@ -82,7 +84,9 @@ a.card:hover { border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
           var(--surface); }
 .hero-copy { position: relative; z-index: 1; padding: 28px 22px 0; max-width: 560px; }
 .hero-copy h1 { font-size: clamp(1.7rem, 4.5vw, 2.6rem); line-height: 1.15; margin-bottom: 10px; }
-#hero3d { position: relative; height: clamp(240px, 38vw, 340px); }
+#hero3d { position: relative; height: clamp(170px, 30vw, 280px); }
+.hero .grid { padding: 0 18px 18px; position: relative; z-index: 1; }
+.card .cta { margin-top: auto; padding-top: 12px; }
 #hero3d canvas { display: block; width: 100% !important; height: 100% !important; }
 .eyebrow { display: inline-block; font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
            color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); padding: 4px 10px; border-radius: 99px; margin-bottom: 12px; }
@@ -100,19 +104,39 @@ form.calc { display: grid; gap: 14px; }
 label { display: grid; gap: 6px; font-weight: 600; font-size: .95rem; }
 label small { font-weight: 400; color: var(--muted); }
 input, select {
-  font: inherit; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line);
+  font: inherit; font-size: 16px; min-height: 48px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--line);
   background: var(--bg); color: var(--text); width: 100%; min-width: 0;
 }
+input[type="checkbox"] { min-height: 0; }
 input:focus, select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
 button {
   font: inherit; font-weight: 600; padding: 11px 16px; border-radius: 10px; border: 0;
   background: var(--accent); color: var(--accent-ink); cursor: pointer;
 }
+button { min-height: 48px; }
+form.calc > button[type="submit"] { width: 100%; }
+@media (min-width: 640px) { form.calc > button[type="submit"] { width: auto; min-width: 220px; } }
 button.ghost { background: transparent; color: var(--accent); border: 1px solid var(--line); }
+button.small { min-height: 36px; padding: 6px 12px; font-size: .9rem; }
+
+/* Tabs (electricity page) */
+.tabs { display: flex; gap: 6px; margin: 4px 0 14px; border-bottom: 1px solid var(--line); }
+.tabs button { background: transparent; color: var(--muted); border-radius: 10px 10px 0 0; padding: 10px 14px; min-height: 44px; border-bottom: 2px solid transparent; }
+.tabs button[aria-selected="true"] { color: var(--text); border-bottom-color: var(--accent); }
+
+/* Result summary rows */
+.result-actions { display: flex; gap: 8px; margin: 10px 0 4px; flex-wrap: wrap; }
+dl.summary { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; margin: 12px 0; font-size: .97rem; }
+dl.summary dt { color: var(--muted); }
+dl.summary dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+
+/* Tool card extras */
+.card .tag { display: inline-block; font-size: .75rem; font-weight: 600; color: var(--muted); border: 1px solid var(--line); border-radius: 99px; padding: 2px 8px; margin-bottom: 8px; }
+.card .cta { display: inline-block; margin-top: 12px; font-weight: 600; color: var(--accent); }
 
 .result { margin-top: 18px; }
 .big { font-size: clamp(1.8rem, 5vw, 2.4rem); font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; margin: 0 0 4px; }
-.result { animation: rise .35s ease both; }
+.result { animation: rise .35s ease both; scroll-margin-top: 84px; }
 @keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .result { animation: none; } }
 table { width: 100%; border-collapse: collapse; font-size: .95rem; }
@@ -125,9 +149,12 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-sp
 .sources { font-size: .88rem; color: var(--muted); }
 .sources li { margin: 4px 0; overflow-wrap: anywhere; }
 
-.aff { border: 1px dashed var(--line); border-radius: var(--radius); padding: 14px; }
+.aff { border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; background: var(--surface); position: relative; }
+.aff::before { content: "LIÊN KẾT TIẾP THỊ"; display: inline-block; font-size: .72rem; font-weight: 700; letter-spacing: .06em;
+               color: #7a4b00; background: #fff1d1; border: 1px solid #f0c36b; border-radius: 6px; padding: 2px 8px; margin-bottom: 8px; }
+html[lang="en"] .aff::before { content: "AFFILIATE LINK"; }
 .aff[hidden] { display: none; }
-.aff .disclosure { font-size: .82rem; color: var(--muted); margin-top: 8px; }
+.aff .disclosure { font-size: .85rem; color: var(--muted); margin-top: 8px; }
 
 .rooms .room { display: grid; gap: 8px; grid-template-columns: 1fr 1fr 1fr auto; align-items: end; }
 @media (max-width: 520px) { .rooms .room { grid-template-columns: 1fr 1fr; } }
