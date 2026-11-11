@@ -29,12 +29,22 @@
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0; background: var(--bg); color: var(--text);
-  font: 16px/1.55 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font: 16px/1.6 "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background-image:
+    radial-gradient(1200px 500px at 85% -10%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 60%),
+    radial-gradient(900px 400px at -10% 10%, color-mix(in srgb, #f2b544 8%, transparent), transparent 60%);
+  background-repeat: no-repeat;
 }
+h1, h2, h3, .brand { letter-spacing: -0.015em; }
 a { color: var(--accent); }
 .wrap { max-width: 860px; margin: 0 auto; padding: 0 16px; }
 
-header.site { border-bottom: 1px solid var(--line); background: var(--surface); }
+header.site {
+  position: sticky; top: 0; z-index: 10;
+  border-bottom: 1px solid var(--line);
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  backdrop-filter: saturate(1.4) blur(12px); -webkit-backdrop-filter: saturate(1.4) blur(12px);
+}
 header.site .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-top: 12px; padding-bottom: 12px; flex-wrap: wrap; }
 .brand { font-weight: 700; font-size: 1.15rem; text-decoration: none; color: var(--text); }
 .brand span { color: var(--accent); }
@@ -48,9 +58,40 @@ h2 { font-size: 1.2rem; margin: 28px 0 10px; }
 .lede { color: var(--muted); margin: 0 0 20px; }
 
 .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
-.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow); }
+.card {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px;
+  box-shadow: 0 1px 1px rgba(0,0,0,.04), 0 6px 18px -6px rgba(0,0,0,.10), 0 24px 48px -24px rgba(0,0,0,.12);
+}
 a.card { display: block; text-decoration: none; color: inherit; }
-a.card:hover { border-color: var(--accent); }
+a.card:hover { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
+
+/* 3D tilt: ui.js sets --rx/--ry from the pointer; static without JS or with reduced motion. */
+.tilt { transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateZ(0);
+        transition: transform .25s ease, box-shadow .25s ease; transform-style: preserve-3d; will-change: transform; }
+.tilt:hover { box-shadow: 0 2px 2px rgba(0,0,0,.04), 0 18px 40px -12px rgba(0,0,0,.22); }
+.tilt .icon { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; margin-bottom: 10px;
+              background: color-mix(in srgb, var(--accent) 14%, var(--surface)); color: var(--accent); transform: translateZ(30px); }
+.tilt h3 { transform: translateZ(20px); }
+@media (prefers-reduced-motion: reduce) { .tilt { transform: none !important; transition: none; } }
+
+/* Homepage hero with the WebGL scene. */
+.hero { position: relative; margin: 8px 0 24px; border-radius: 20px; overflow: hidden; border: 1px solid var(--line);
+        background:
+          radial-gradient(600px 260px at 20% 30%, color-mix(in srgb, #f2b544 22%, transparent), transparent 70%),
+          radial-gradient(700px 300px at 80% 40%, color-mix(in srgb, var(--accent) 28%, transparent), transparent 70%),
+          var(--surface); }
+.hero-copy { position: relative; z-index: 1; padding: 28px 22px 0; max-width: 560px; }
+.hero-copy h1 { font-size: clamp(1.7rem, 4.5vw, 2.6rem); line-height: 1.15; margin-bottom: 10px; }
+#hero3d { position: relative; height: clamp(240px, 38vw, 340px); }
+#hero3d canvas { display: block; width: 100% !important; height: 100% !important; }
+.eyebrow { display: inline-block; font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+           color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); padding: 4px 10px; border-radius: 99px; margin-bottom: 12px; }
+.trust { display: flex; gap: 18px; flex-wrap: wrap; font-size: .9rem; color: var(--muted); margin: 6px 0 8px; }
+.trust span::before { content: "✓ "; color: var(--accent); font-weight: 700; }
+
+/* Tool page title band */
+.page-head { padding: 6px 0 4px; }
+.page-head .eyebrow { margin-bottom: 8px; }
 .card h3 { margin: 0 0 6px; font-size: 1.05rem; }
 .card p { margin: 0; color: var(--muted); font-size: .95rem; }
 
@@ -70,7 +111,10 @@ button {
 button.ghost { background: transparent; color: var(--accent); border: 1px solid var(--line); }
 
 .result { margin-top: 18px; }
-.big { font-size: 1.8rem; font-weight: 700; }
+.big { font-size: clamp(1.8rem, 5vw, 2.4rem); font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; margin: 0 0 4px; }
+.result { animation: rise .35s ease both; }
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .result { animation: none; } }
 table { width: 100%; border-collapse: collapse; font-size: .95rem; }
 th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
 td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }

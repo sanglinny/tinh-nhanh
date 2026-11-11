@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /tests/
+Sitemap: https://sanglinny.github.io/tinh-nhanh/sitemap.xml

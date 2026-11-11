@@ -3,9 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tính Nhanh — công cụ tính toán miễn phí, cập nhật quy định mới</title>
-<meta name="description" content="Tính tiền điện bậc thang, chia tiền điện phòng trọ, thuế hộ kinh doanh 2026 và công cụ lên kế hoạch du lịch Việt Nam. Miễn phí, nhanh, cập nhật theo quy định mới.">
+<title>Tính Nhanh — tiền điện, thuế hộ kinh doanh, du lịch Việt Nam</title>
+<meta name="description" content="Tính tiền điện bậc thang mới, chia tiền điện phòng trọ, thuế hộ kinh doanh 2026 (ngưỡng 1 tỷ) và công cụ lên kế hoạch du lịch Việt Nam. Miễn phí, ghi rõ nguồn văn bản.">
+<meta property="og:title" content="Tính Nhanh — công cụ tính toán theo quy định mới">
+<meta property="og:description" content="Tiền điện 5 bậc, thuế hộ kinh doanh 2026, kế hoạch du lịch Việt Nam. Miễn phí, có nguồn.">
+<meta name="theme-color" content="#0f766e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="assets/style.css">
+<script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js" } }</script>
 </head>
 <body>
 <header class="site"><div class="wrap">
@@ -16,15 +23,39 @@
     <a href="travel/index.html">Vietnam travel</a>
   </nav>
 </div></header>
+
 <main class="wrap">
-  <h1>Công cụ tính nhanh, cập nhật theo quy định mới</h1>
-  <p class="lede">Miễn phí, không cần đăng nhập, không lưu dữ liệu bạn nhập. Mỗi công cụ ghi rõ văn bản và ngày kiểm tra số liệu.</p>
+  <section class="hero">
+    <div class="hero-copy">
+      <span class="eyebrow">Cập nhật tháng 11/2026</span>
+      <h1>Tính đúng theo quy định mới, trong vài giây</h1>
+      <p class="lede">Biểu giá điện 5 bậc, ngưỡng thuế 1 tỷ của hộ kinh doanh, thủ tục nhập cảnh Việt Nam. Mỗi con số đều dẫn văn bản gốc.</p>
+      <div class="trust"><span>Miễn phí</span><span>Không cần đăng nhập</span><span>Không lưu dữ liệu bạn nhập</span></div>
+    </div>
+    <div id="hero3d" aria-hidden="true"></div>
+  </section>
+
   <div class="grid">
-    <a class="card" href="tien-dien.html"><h3>⚡ Tính tiền điện</h3><p>Biểu giá bậc thang mới, có VAT. Chia tiền điện phòng trọ theo từng phòng.</p></a>
-    <a class="card" href="thue-ho-kinh-doanh.html"><h3>🧾 Thuế hộ kinh doanh 2026</h3><p>Ước tính GTGT và TNCN theo doanh thu, ngưỡng miễn thuế mới.</p></a>
-    <a class="card" href="travel/index.html"><h3>🧭 Plan your Vietnam trip</h3><p>Visa & entry check, eSIM, and a simple itinerary builder (English).</p></a>
+    <a class="card tilt" href="tien-dien.html">
+      <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>
+      <h3>Tính tiền điện</h3>
+      <p>Biểu giá 5 bậc từ 01/11/2026, đã gồm VAT. Chia tiền điện phòng trọ theo đồng hồ từng phòng.</p>
+    </a>
+    <a class="card tilt" href="thue-ho-kinh-doanh.html">
+      <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12v20l-3-2-3 2-3-2-3 2z"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></span>
+      <h3>Thuế hộ kinh doanh 2026</h3>
+      <p>Miễn thuế đến 1 tỷ/năm. Tính GTGT, TNCN và so sánh hai cách tính khi doanh thu 1–3 tỷ.</p>
+    </a>
+    <a class="card tilt" href="travel/index.html">
+      <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></span>
+      <h3>Plan your Vietnam trip</h3>
+      <p>Visa-free days by passport, official e-visa rules, eSIM and a day-by-day route (English).</p>
+    </a>
   </div>
 </main>
+
 <footer class="site"><div class="wrap">Tính Nhanh — công cụ miễn phí. Một số trang có liên kết tiếp thị và được ghi rõ. <a href="gioi-thieu.html">Giới thiệu & liên hệ</a></div></footer>
+<script type="module" src="assets/ui.js"></script>
+<script type="module" src="assets/hero3d.js"></script>
 </body>
 </html>
