@@ -1,0 +1,58 @@
+{
+  "verified_at": "2026-11-12",
+  "prior_note_check": "PARTLY OUTDATED. Thuế khoán abolished from 01/01/2026: CONFIRMED (Nghị quyết 198/2025/QH15). '500 triệu' exempt: was the original rule (Luật 109/2025/QH15, Luật 149/2025/QH15, Nghị định 68/2026/NĐ-CP) but was RAISED to 1 tỷ đồng/năm, retroactive to 01/01/2026, by Luật 09/2026/QH16 (delegation to Government) + Nghị định 141/2026/NĐ-CP.",
+  "legal_basis": [
+    {"doc": "Nghị quyết 198/2025/QH15 (17/05/2025) – cơ chế đặc biệt phát triển kinh tế tư nhân: bỏ thuế khoán, chấm dứt lệ phí môn bài", "effective_from": "2026-01-01 (các nội dung về thuế khoán, lệ phí môn bài)"},
+    {"doc": "Luật Thuế thu nhập cá nhân 109/2025/QH15 (10/12/2025) – Điều 7 thu nhập từ kinh doanh", "effective_from": "2026-07-01; quy định về thu nhập từ kinh doanh áp dụng từ kỳ tính thuế năm 2026 (Điều 29 khoản 2)"},
+    {"doc": "Luật Thuế giá trị gia tăng 48/2024/QH15, sửa đổi bởi Luật 149/2025/QH15 (11/12/2025) – Điều 12 khoản 2 phương pháp tính trực tiếp theo tỷ lệ % trên doanh thu", "effective_from": "2025-07-01 (Luật 48); 2026-01-01 (Luật 149)"},
+    {"doc": "Luật 09/2026/QH16 (24/04/2026) sửa đổi Luật Thuế TNCN, GTGT, TNDN, TTĐB – giao Chính phủ quy định mức doanh thu không phải nộp thuế TNCN và không chịu thuế GTGT", "effective_from": "2026-04-24; riêng Điều 1, 2, 3 (ngưỡng doanh thu) áp dụng từ 2026-01-01"},
+    {"doc": "Nghị định 68/2026/NĐ-CP (05/03/2026) – chính sách thuế và quản lý thuế đối với hộ kinh doanh, cá nhân kinh doanh", "effective_from": "2026-03-05"},
+    {"doc": "Nghị định 141/2026/NĐ-CP (29/04/2026) – sửa Nghị định 68/2026 và 320/2025: thay '500 triệu đồng' bằng '1 tỷ đồng'; HĐĐT bắt buộc khi doanh thu năm trên 1 tỷ", "effective_from": "2026-01-01 (hiệu lực hồi tố)"},
+    {"doc": "Luật Quản lý thuế 108/2025/QH15", "effective_from": "2026-07-01"}
+  ],
+  "exempt_threshold_vnd": 1000000000,
+  "notes_public": "Ngưỡng 1 tỷ đồng/năm theo Nghị định 141/2026/NĐ-CP (áp dụng từ 01/01/2026, thay mức 500 triệu trước đó). Mức 1 tỷ được trừ một lần cho mỗi hộ/cá nhân kinh doanh trên tổng doanh thu mọi ngành nghề. Tỷ lệ GTGT 5% cho cho thuê tài sản và nội dung số được xếp theo nhóm dịch vụ — nên xác nhận với cơ quan thuế. Chính phủ có thể điều chỉnh ngưỡng; kiểm tra lại trước khi quyết toán.",
+  "exempt_rule": "Doanh thu năm từ 1 tỷ đồng trở xuống: không chịu thuế GTGT và không phải nộp thuế TNCN (Nghị định 141/2026/NĐ-CP). Vẫn phải thông báo doanh thu thực tế 01 lần/năm, chậm nhất 31/01 năm sau.",
+  "threshold_applies_to": "Mỗi hộ kinh doanh / cá nhân kinh doanh, tính theo tổng doanh thu năm dương lịch của tất cả ngành nghề, địa điểm (chỉ được trừ một lần 1 tỷ/năm; có nhiều địa điểm/ngành nghề thì tự chọn nơi trừ, phần chưa trừ hết trừ tiếp nơi khác). Luật dùng chữ 'cá nhân cư trú'; hộ có nhiều thành viên do chủ hộ đại diện kê khai – xem notes.",
+  "exempt_portion_deducted": {
+    "pit_percent_method": true,
+    "vat": false,
+    "explanation": "TNCN theo tỷ lệ: doanh thu tính thuế = phần doanh thu vượt trên mức không phải nộp thuế (Luật 109/2025 Điều 7 khoản 3 điểm a; cho thuê BĐS: khoản 4). GTGT: doanh thu tính thuế là tổng số tiền bán hàng hóa, dịch vụ (Luật GTGT Điều 12 khoản 2 điểm c) – tính trên TOÀN BỘ doanh thu khi vượt ngưỡng."
+  },
+  "groups": [
+    {"id": "goods", "name_vi": "Phân phối, cung cấp hàng hóa", "vat_percent": 1, "pit_percent": 0.5},
+    {"id": "services", "name_vi": "Dịch vụ, xây dựng không bao thầu nguyên vật liệu", "vat_percent": 5, "pit_percent": 2},
+    {"id": "production", "name_vi": "Sản xuất, vận tải, dịch vụ có gắn với hàng hóa, xây dựng có bao thầu nguyên vật liệu", "vat_percent": 3, "pit_percent": 1.5},
+    {"id": "other", "name_vi": "Hoạt động kinh doanh khác", "vat_percent": 2, "pit_percent": 1},
+    {"id": "asset_leasing", "name_vi": "Cho thuê tài sản; đại lý bảo hiểm, đại lý xổ số, đại lý bán hàng đa cấp (TNCN 5%)", "vat_percent": 5, "pit_percent": 5, "note": "TNCN 5% ghi thẳng trong Luật 109/2025 Điều 7 khoản 3 điểm c. GTGT 5% vì cho thuê tài sản thuộc nhóm dịch vụ (b2) – chưa đọc được nguyên văn danh mục ngành của Bộ Tài chính; đại lý bảo hiểm/xổ số/đa cấp hoa hồng có thể không chịu GTGT ở khâu đại lý – kiểm tra riêng."},
+    {"id": "real_estate_rental", "name_vi": "Cho thuê bất động sản (trừ kinh doanh lưu trú)", "vat_percent": 5, "pit_percent": 5, "note": "TNCN = (doanh thu − 1 tỷ) × 5%, KHÔNG được chọn phương pháp thu nhập (Luật 109 Điều 7 khoản 2 và 4)."},
+    {"id": "digital_content", "name_vi": "Sản phẩm, dịch vụ nội dung thông tin số (giải trí, trò chơi điện tử, phim, ảnh, nhạc, quảng cáo số)", "vat_percent": 5, "pit_percent": 5, "note": "TNCN 5% theo Luật 109 Điều 7 khoản 3 điểm đ; GTGT 5% giả định thuộc nhóm dịch vụ – chưa xác minh nguyên văn danh mục."}
+  ],
+  "pit_income_method_rates": [
+    {"revenue_from_vnd_exclusive": 1000000000, "revenue_to_vnd_inclusive": 3000000000, "rate_percent": 15, "mandatory": false},
+    {"revenue_from_vnd_exclusive": 3000000000, "revenue_to_vnd_inclusive": 50000000000, "rate_percent": 17, "mandatory": true},
+    {"revenue_from_vnd_exclusive": 50000000000, "revenue_to_vnd_inclusive": null, "rate_percent": 20, "mandatory": true}
+  ],
+  "methods": [
+    "Doanh thu ≤ 1 tỷ đồng/năm: không nộp GTGT, TNCN; thông báo doanh thu 1 lần/năm (hạn 31/01 năm sau); không bắt buộc hóa đơn điện tử.",
+    "Doanh thu > 1 tỷ đến 3 tỷ: GTGT = toàn bộ doanh thu × tỷ lệ % ngành; TNCN được CHỌN (a) (doanh thu − 1 tỷ) × tỷ lệ % ngành, hoặc (b) (doanh thu − chi phí) × 15%.",
+    "Doanh thu > 3 tỷ đến 50 tỷ: GTGT theo tỷ lệ % trên doanh thu; TNCN bắt buộc = (doanh thu − chi phí) × 17%.",
+    "Doanh thu > 50 tỷ: GTGT theo tỷ lệ % trên doanh thu; TNCN bắt buộc = (doanh thu − chi phí) × 20%; khai thuế theo tháng.",
+    "Cho thuê bất động sản: TNCN = (doanh thu − 1 tỷ) × 5%, không áp dụng phương pháp thu nhập.",
+    "Doanh thu năm trên 1 tỷ: bắt buộc hóa đơn điện tử có mã của cơ quan thuế hoặc hóa đơn điện tử khởi tạo từ máy tính tiền kết nối dữ liệu với cơ quan thuế (Nghị định 141/2026); dưới mức này được tự nguyện đăng ký."
+  ],
+  "license_fee": "Bãi bỏ: chấm dứt thu, nộp lệ phí môn bài từ 01/01/2026 (Nghị quyết 198/2025/QH15, Điều 10). Không còn phải nộp cho năm 2026 trở đi.",
+  "filing": "Khai thuế điện tử là chính. Doanh thu ≤ 1 tỷ: thông báo doanh thu 01 lần/năm, hạn 31/01 năm sau. Doanh thu > 1 tỷ đến 50 tỷ: khai theo quý (hạn: ngày cuối cùng của tháng đầu quý sau). Doanh thu > 50 tỷ: khai theo tháng (hạn ngày 20 tháng sau). Nộp thuế chậm nhất ngày cuối cùng của hạn nộp hồ sơ khai. Phải thông báo tài khoản ngân hàng, ví điện tử dùng cho kinh doanh (Nghị định 68/2026). Hộ đã nộp thuế quý I/2026 nhưng doanh thu cả năm ≤ 1 tỷ được xử lý số đã nộp (hoàn/bù trừ) theo Nghị định 141/2026.",
+  "sources": [
+    {"title": "Luật Thuế thu nhập cá nhân số 109/2025/QH15 (bản PDF trên luatvietnam.vn)", "url": "https://cms.luatvietnam.vn/uploaded/Others/2025/12/30/Luat-109-2025-QH15_3012143156.pdf", "accessed": "2026-11-12"},
+    {"title": "Văn bản hợp nhất Luật Thuế giá trị gia tăng (12/VBHN-VPQH, chinhphu.vn)", "url": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/02/12-vbhn-vpqh.pdf", "accessed": "2026-11-12"},
+    {"title": "Sở Tư pháp Tuyên Quang – Đề cương giới thiệu Luật 09/2026/QH16", "url": "https://pbgdpl.tuyenquang.gov.vn/Vanban/202661910382_37297.pdf", "accessed": "2026-11-12"},
+    {"title": "Toàn văn Nghị định 141/2026/NĐ-CP (xaydungchinhsach.chinhphu.vn)", "url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-so-141-2026-nd-cp-nang-nguong-doanh-thu-khong-phai-chiu-thue-len-1-ty-dong-119260504154326455.htm", "accessed": "2026-11-12"},
+    {"title": "Nghị định 141/2026/NĐ-CP – quy định mới về chính sách thuế (xaydungchinhsach.chinhphu.vn)", "url": "https://xaydungchinhsach.chinhphu.vn/nghi-dinh-so-141-2026-nd-cp-quy-dinh-moi-ve-chinh-sach-thue-doi-voi-ho-kinh-doanh-doanh-nghiep-119260430091642895.htm", "accessed": "2026-11-12"},
+    {"title": "Decree 141/2026/ND-CP (english.luatvietnam.vn)", "url": "https://english.luatvietnam.vn/decree-no-141-2026-nd-cp-dated-april-29-2026-of-the-government-amending-and-supplementing-a-number-of-articles-of-decree-no-68-2026-nd-cp-providing-433387-doc1.html", "accessed": "2026-11-12"},
+    {"title": "8 nội dung đáng chú ý của Nghị định 68/2026/NĐ-CP (luatvietnam.vn)", "url": "https://luatvietnam.vn/thue-phi-le-phi/6-noi-dung-dang-chu-y-cua-nghi-dinh-68-2026-nd-cp-ve-thue-ho-kinh-doanh-565-107530-article.html", "accessed": "2026-11-12"},
+    {"title": "Từ tháng 1/2026: Người nộp thuế không phải nộp lệ phí môn bài (xaydungchinhsach.chinhphu.vn)", "url": "https://xaydungchinhsach.chinhphu.vn/tu-thang-1-2026-nguoi-nop-thue-khong-phai-nop-le-phi-mon-bai-119260126110926562.htm", "accessed": "2026-11-12"},
+    {"title": "Quốc hội chốt bỏ ngưỡng chịu thuế 500 triệu đồng với hộ kinh doanh (VnExpress)", "url": "https://vnexpress.net/quoc-hoi-chot-bo-nguong-chiu-thue-500-trieu-dong-voi-ho-kinh-doanh-5066445.html", "accessed": "2026-11-12"}
+  ],
+  "notes": "VERIFIED FROM PRIMARY TEXT: PIT rates/brackets/formulas (Luật 109/2025 Điều 7 text read directly), VAT % (Luật GTGT hợp nhất Điều 12.2.b read directly), VAT base = total revenue, Law 09/2026 delegation and 01/01/2026 retroactivity, 1 tỷ threshold & e-invoice >1 tỷ (Nghị định 141 via chinhphu.vn + luatvietnam). Full original text of Nghị định 68/2026 and 141/2026 not read verbatim (thuvienphapluat returned 403); details on filing deadlines, multi-location threshold allocation and Q1/2026 refund handling come from summaries of those decrees. UNCERTAIN: (1) VAT % for asset leasing and digital content (5%) assumed from 'dịch vụ' group – confirm against Bộ Tài chính danh mục ngành nghề; agency commissions may be outside VAT. (2) Whether a household with several members gets one 1-tỷ allowance per household (summaries say per household/representative) – confirm in Nghị định 68 Điều 4. (3) Bracket boundaries: law says 'trên mức quy định đến 03 tỷ' = 15%, 'trên 03 tỷ đến 50 tỷ' = 17%, 'trên 50 tỷ' = 20%. (4) Government may change the threshold again by decree (Law 09/2026 delegation); Finance Minister said it must stay under 3 tỷ. Re-check before 2027. Monthly vs quarterly cut-off at 50 tỷ is from decree summaries."
+}

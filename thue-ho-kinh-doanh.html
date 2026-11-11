@@ -25,6 +25,9 @@
     <form class="calc" id="f">
       <div id="lines"></div>
       <div><button type="button" class="ghost" id="add">+ Thêm ngành nghề khác</button></div>
+      <label>Tổng chi phí hợp lý cả năm (đồng) <small>không bắt buộc — dùng khi doanh thu trên 1 tỷ để so sánh cách tính theo thu nhập; trên 3 tỷ thì bắt buộc</small>
+        <input id="expenses" type="number" inputmode="numeric" min="0" step="1000000" placeholder="Ví dụ 900000000">
+      </label>
       <button type="submit">Tính thuế</button>
     </form>
     <div class="result" id="r" aria-live="polite"></div>
@@ -56,15 +59,15 @@ let R;
 try { R = await loadJSON("data/household-business-tax-2026.json"); }
 catch (e) { document.getElementById("meta").textContent = "Chưa có quy định đã kiểm chứng. " + e.message; throw e; }
 
-const basis = (R.legal_basis || []).map((b) => `${b.doc}${b.effective_from ? " (hiệu lực " + b.effective_from + ")" : ""}`).join("; ");
 document.getElementById("meta").textContent =
-  `Ngưỡng doanh thu miễn thuế: ${R.exempt_threshold_vnd ? vnd(R.exempt_threshold_vnd) + "/năm" : "chưa xác minh"}. Căn cứ: ${basis || "—"}.`;
+  `Doanh thu từ ${vnd(R.exempt_threshold_vnd)}/năm trở xuống không phải nộp thuế GTGT và TNCN (Nghị định 141/2026/NĐ-CP, áp dụng từ 01/01/2026). Thuế khoán và lệ phí môn bài đã bỏ.`;
 document.getElementById("rules").innerHTML =
   `<ul>${(R.methods || []).map((m) => `<li>${escapeHtml(m)}</li>`).join("")}
+   <li>Căn cứ: ${(R.legal_basis || []).map((b) => escapeHtml(b.doc.split(" – ")[0])).join("; ")}.</li>
    ${R.license_fee ? `<li>Lệ phí môn bài: ${escapeHtml(R.license_fee)}</li>` : ""}
    ${R.filing ? `<li>Kê khai: ${escapeHtml(R.filing)}</li>` : ""}</ul>`;
 renderSources(document.getElementById("sources"), R.sources, R.verified_at);
-if (R.notes) { const n = document.getElementById("notes"); n.textContent = R.notes; n.hidden = false; }
+if (R.notes_public) { const n = document.getElementById("notes"); n.textContent = R.notes_public; n.hidden = false; }
 
 const linesEl = document.getElementById("lines");
 const options = R.groups.map((g) => `<option value="${g.id}">${escapeHtml(g.name_vi)}</option>`).join("");
@@ -76,23 +79,34 @@ function addLine(group = R.groups[0].id, revenue = "") {
   d.querySelector("select").value = group;
   linesEl.appendChild(d);
 }
-addLine(R.groups[0].id, 800000000);
+addLine(R.groups[0].id, 1500000000);
 document.getElementById("add").onclick = () => addLine();
 
 document.getElementById("f").addEventListener("submit", (ev) => {
   ev.preventDefault();
   const lines = [...linesEl.children].map((d) => ({ group: d.querySelector("select").value, revenue: d.querySelector("input").value }));
-  const t = householdTax(R, lines);
+  const expRaw = document.getElementById("expenses").value;
+  const t = householdTax(R, lines, { expenses: expRaw === "" ? null : Number(expRaw) });
   const el = document.getElementById("r");
   if (t.exempt) {
-    el.innerHTML = `<p class="big">0 đ</p><p class="muted">Tổng doanh thu ${vnd(t.total)}/năm, không vượt ngưỡng ${vnd(t.threshold)} — thuộc diện không phải nộp thuế GTGT và thuế TNCN theo quy định đã nêu. Vẫn cần thực hiện kê khai/thông báo doanh thu nếu quy định yêu cầu.</p>`;
+    el.innerHTML = `<p class="big">0 đ</p><p class="muted">Tổng doanh thu ${vnd(t.total)}/năm, không vượt ${vnd(t.threshold)}: không chịu thuế GTGT, không phải nộp thuế TNCN. ${escapeHtml(R.exempt_rule?.split(". ").slice(1).join(". ") || "")}</p>`;
     return;
   }
-  el.innerHTML = `<p class="big">${t.tax == null ? "Chưa đủ dữ liệu" : vnd(t.tax)}<span class="muted" style="font-size:1rem"> / năm</span></p>
-    <p class="muted">Doanh thu tính thuế: ${vnd(t.taxableTotal)} ${R.exempt_portion_deducted ? "(phần vượt ngưỡng " + vnd(t.threshold) + ")" : "(toàn bộ doanh thu)"}.</p>
-    <div class="table-scroll"><table><thead><tr><th>Ngành</th><th class="num">Doanh thu</th><th class="num">GTGT</th><th class="num">TNCN</th></tr></thead><tbody>` +
-    t.rows.map((r) => `<tr><td>${escapeHtml(r.name)}</td><td class="num">${vnd(r.revenue)}</td><td class="num">${r.vat == null ? "?" : vnd(r.vat)}</td><td class="num">${r.pit == null ? "?" : vnd(r.pit)}</td></tr>`).join("") +
-    `</tbody></table></div>`;
+  const methodText = {
+    "percent": `TNCN theo tỷ lệ % trên phần doanh thu vượt ${vnd(t.threshold)} (${vnd(t.above)}).`,
+    "income-chosen": `TNCN theo thu nhập (doanh thu − chi phí) × ${t.bracketRate}% — thấp hơn cách tính theo tỷ lệ %, nên được chọn.`,
+    "income-mandatory": `Doanh thu trên 3 tỷ: TNCN bắt buộc tính theo thu nhập (doanh thu − chi phí) × ${t.bracketRate}%.`,
+  }[t.pitMethod];
+  const compare = t.pitMethod !== "income-mandatory" && t.pitOptions.income != null
+    ? `<p class="muted">So sánh TNCN: theo tỷ lệ % ${vnd(t.pitOptions.percent)} · theo thu nhập ${vnd(t.pitOptions.income)}. Hộ được chọn một cách và phải sổ sách chứng minh chi phí nếu chọn cách theo thu nhập.</p>` : "";
+  el.innerHTML = (t.tax == null
+      ? `<p class="big">Cần nhập chi phí</p><p class="muted">${escapeHtml(methodText)} Nhập tổng chi phí hợp lý cả năm để tính TNCN. GTGT: ${t.vat == null ? "?" : vnd(t.vat)}.</p>`
+      : `<p class="big">${vnd(t.tax)}<span class="muted" style="font-size:1rem"> / năm</span></p>
+         <p class="muted">GTGT ${vnd(t.vat)} (trên toàn bộ doanh thu) + TNCN ${vnd(t.pit)}. ${escapeHtml(methodText)}</p>`) + compare +
+    `<div class="table-scroll"><table><thead><tr><th>Ngành</th><th class="num">Doanh thu</th><th class="num">GTGT</th></tr></thead><tbody>` +
+    t.rows.map((r) => `<tr><td>${escapeHtml(r.name)}<br><small class="muted">GTGT ${r.vatPct}% · TNCN ${r.pitPct}%</small></td><td class="num">${vnd(r.revenue)}</td><td class="num">${r.vat == null ? "?" : vnd(r.vat)}</td></tr>`).join("") +
+    `</tbody></table></div>` +
+    (t.total > t.threshold ? `<p class="muted">Doanh thu trên ${vnd(t.threshold)}: bắt buộc dùng hóa đơn điện tử có mã hoặc hóa đơn từ máy tính tiền; khai thuế theo quý (trên 50 tỷ: theo tháng).</p>` : "");
 });
 document.getElementById("f").requestSubmit();
 fillAffiliates();

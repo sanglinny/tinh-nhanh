@@ -62,11 +62,36 @@ test("household tax: at or under the threshold pays nothing", { skip: !existsSyn
   const R = JSON.parse(readFileSync(taxFile));
   const t = householdTax(R, [{ group: R.groups[0].id, revenue: R.exempt_threshold_vnd }]);
   assert.equal(t.exempt, true);
-  assert.equal(t.taxableTotal, 0);
+  assert.equal(t.tax, 0);
 });
 
-test("household tax engine: exempt portion deducted vs whole revenue", () => {
-  const rules = { exempt_threshold_vnd: 500e6, groups: [{ id: "g", vat_percent: 1, pit_percent: 0.5 }] };
-  assert.equal(householdTax({ ...rules, exempt_portion_deducted: true }, [{ group: "g", revenue: 600e6 }]).tax, 100e6 * 0.015);
-  assert.equal(householdTax({ ...rules, exempt_portion_deducted: false }, [{ group: "g", revenue: 600e6 }]).tax, 600e6 * 0.015);
+test("household tax 2026: VAT on whole revenue, PIT only above 1 billion", () => {
+  const R = JSON.parse(readFileSync(taxFile));
+  const t = householdTax(R, [{ group: "goods", revenue: 1.5e9 }]);
+  assert.equal(t.vat, 1.5e9 * 0.01);           // 15,000,000
+  assert.equal(t.pit, 0.5e9 * 0.005);          // 2,500,000
+  assert.equal(t.pitMethod, "percent");
+});
+
+test("household tax 2026: 1-3 billion may choose the cheaper income method", () => {
+  const R = JSON.parse(readFileSync(taxFile));
+  const t = householdTax(R, [{ group: "services", revenue: 2e9 }], { expenses: 1.95e9 });
+  assert.equal(t.pitOptions.percent, 1e9 * 0.02);           // 20,000,000
+  assert.equal(t.pitOptions.income, 0.05e9 * 0.15);         // 7,500,000
+  assert.equal(t.pitMethod, "income-chosen");
+});
+
+test("household tax 2026: above 3 billion the income method is mandatory", () => {
+  const R = JSON.parse(readFileSync(taxFile));
+  const noExp = householdTax(R, [{ group: "goods", revenue: 4e9 }]);
+  assert.equal(noExp.pitMethod, "income-mandatory");
+  assert.equal(noExp.pit, null);
+  const t = householdTax(R, [{ group: "goods", revenue: 4e9 }], { expenses: 3e9 });
+  assert.equal(t.pit, 1e9 * 0.17);
+});
+
+test("household tax 2026: real-estate rental always (revenue - 1bn) x 5%", () => {
+  const R = JSON.parse(readFileSync(taxFile));
+  const t = householdTax(R, [{ group: "real_estate_rental", revenue: 5e9 }]);
+  assert.equal(t.pit, 4e9 * 0.05);
 });
