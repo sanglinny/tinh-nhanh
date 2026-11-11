@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tính thuế hộ kinh doanh 2026 — Tính Nhanh</title>
+<meta name="description" content="Ước tính thuế GTGT và thuế TNCN của hộ kinh doanh, cá nhân kinh doanh năm 2026 theo doanh thu và ngành nghề, kèm ngưỡng miễn thuế mới.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html">Tính <span>Nhanh</span></a>
+  <nav class="top">
+    <a href="tien-dien.html">Tiền điện</a>
+    <a href="thue-ho-kinh-doanh.html" aria-current="page">Thuế hộ kinh doanh</a>
+    <a href="travel/index.html">Vietnam travel</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <h1>Tính thuế hộ kinh doanh, cá nhân kinh doanh 2026</h1>
+  <p class="lede" id="meta">Đang tải quy định…</p>
+
+  <section class="card">
+    <form class="calc" id="f">
+      <div id="lines"></div>
+      <div><button type="button" class="ghost" id="add">+ Thêm ngành nghề khác</button></div>
+      <button type="submit">Tính thuế</button>
+    </form>
+    <div class="result" id="r" aria-live="polite"></div>
+  </section>
+
+  <h2>Cần biết</h2>
+  <div class="card" id="rules"></div>
+
+  <h2>Gợi ý</h2>
+  <div class="aff" data-aff="accounting-software" hidden>
+    <strong data-aff-title></strong>
+    <p data-aff-text class="muted"></p>
+    <a data-aff-link></a>
+    <p class="disclosure">Liên kết tiếp thị: chúng tôi có thể nhận hoa hồng nếu bạn mua qua liên kết này, giá bạn trả không đổi.</p>
+  </div>
+
+  <div class="note" id="notes" hidden></div>
+  <div class="sources" id="sources"></div>
+  <p class="muted"><small>Công cụ chỉ ước tính theo phương pháp tỷ lệ % trên doanh thu. Không thay thế tư vấn của cơ quan thuế hoặc kế toán.</small></p>
+</main>
+
+<footer class="site"><div class="wrap">Tính Nhanh — công cụ miễn phí, không thu thập dữ liệu bạn nhập. <a href="gioi-thieu.html">Giới thiệu & liên hệ</a></div></footer>
+
+<script type="module">
+import { loadJSON, vnd, renderSources, escapeHtml, fillAffiliates } from "./assets/common.js";
+import { householdTax } from "./assets/tax.js";
+
+let R;
+try { R = await loadJSON("data/household-business-tax-2026.json"); }
+catch (e) { document.getElementById("meta").textContent = "Chưa có quy định đã kiểm chứng. " + e.message; throw e; }
+
+const basis = (R.legal_basis || []).map((b) => `${b.doc}${b.effective_from ? " (hiệu lực " + b.effective_from + ")" : ""}`).join("; ");
+document.getElementById("meta").textContent =
+  `Ngưỡng doanh thu miễn thuế: ${R.exempt_threshold_vnd ? vnd(R.exempt_threshold_vnd) + "/năm" : "chưa xác minh"}. Căn cứ: ${basis || "—"}.`;
+document.getElementById("rules").innerHTML =
+  `<ul>${(R.methods || []).map((m) => `<li>${escapeHtml(m)}</li>`).join("")}
+   ${R.license_fee ? `<li>Lệ phí môn bài: ${escapeHtml(R.license_fee)}</li>` : ""}
+   ${R.filing ? `<li>Kê khai: ${escapeHtml(R.filing)}</li>` : ""}</ul>`;
+renderSources(document.getElementById("sources"), R.sources, R.verified_at);
+if (R.notes) { const n = document.getElementById("notes"); n.textContent = R.notes; n.hidden = false; }
+
+const linesEl = document.getElementById("lines");
+const options = R.groups.map((g) => `<option value="${g.id}">${escapeHtml(g.name_vi)}</option>`).join("");
+function addLine(group = R.groups[0].id, revenue = "") {
+  const d = document.createElement("div");
+  d.className = "row";
+  d.innerHTML = `<label>Ngành nghề<select>${options}</select></label>
+    <label>Doanh thu cả năm (đồng)<input type="number" inputmode="numeric" min="0" step="1000000" value="${revenue}"></label>`;
+  d.querySelector("select").value = group;
+  linesEl.appendChild(d);
+}
+addLine(R.groups[0].id, 800000000);
+document.getElementById("add").onclick = () => addLine();
+
+document.getElementById("f").addEventListener("submit", (ev) => {
+  ev.preventDefault();
+  const lines = [...linesEl.children].map((d) => ({ group: d.querySelector("select").value, revenue: d.querySelector("input").value }));
+  const t = householdTax(R, lines);
+  const el = document.getElementById("r");
+  if (t.exempt) {
+    el.innerHTML = `<p class="big">0 đ</p><p class="muted">Tổng doanh thu ${vnd(t.total)}/năm, không vượt ngưỡng ${vnd(t.threshold)} — thuộc diện không phải nộp thuế GTGT và thuế TNCN theo quy định đã nêu. Vẫn cần thực hiện kê khai/thông báo doanh thu nếu quy định yêu cầu.</p>`;
+    return;
+  }
+  el.innerHTML = `<p class="big">${t.tax == null ? "Chưa đủ dữ liệu" : vnd(t.tax)}<span class="muted" style="font-size:1rem"> / năm</span></p>
+    <p class="muted">Doanh thu tính thuế: ${vnd(t.taxableTotal)} ${R.exempt_portion_deducted ? "(phần vượt ngưỡng " + vnd(t.threshold) + ")" : "(toàn bộ doanh thu)"}.</p>
+    <div class="table-scroll"><table><thead><tr><th>Ngành</th><th class="num">Doanh thu</th><th class="num">GTGT</th><th class="num">TNCN</th></tr></thead><tbody>` +
+    t.rows.map((r) => `<tr><td>${escapeHtml(r.name)}</td><td class="num">${vnd(r.revenue)}</td><td class="num">${r.vat == null ? "?" : vnd(r.vat)}</td><td class="num">${r.pit == null ? "?" : vnd(r.pit)}</td></tr>`).join("") +
+    `</tbody></table></div>`;
+});
+document.getElementById("f").requestSubmit();
+fillAffiliates();
+</script>
+</body>
+</html>

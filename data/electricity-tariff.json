@@ -1,0 +1,35 @@
+{
+  "verified_at": "2026-11-12",
+  "decision": "Quyết định 2892/QĐ-BCT ngày 31/10/2026 của Bộ Công Thương (thay biểu giá 6 bậc theo QĐ 1279/QĐ-BCT ngày 09/05/2025)",
+  "effective_from": "2026-11-01",
+  "vat_percent": 8,
+  "vat_note": "8% theo Nghị quyết 204/2025/QH15 (giảm thuế GTGT đến hết 31/12/2026); từ 01/01/2027 có thể trở lại 10%.",
+  "persons_per_household": 4,
+  "undeclared_renter_tier_index": 1,
+  "band_scale_by_days": false,
+  "notes_public": "Giá lấy từ bản tóm tắt Quyết định 2892/QĐ-BCT của EVN và LuatVietnam (các nguồn khớp nhau). Kiểm tra: 300 kWh = 708.400 đ chưa VAT, đúng với ví dụ EVN công bố. Kỳ ghi chỉ số khác 30 ngày hoặc đi qua ngày đổi giá có thể được điện lực phân bổ theo ngày — công cụ chưa tính phần này.",
+  "tiers": [
+    { "from_kwh": 0, "to_kwh": 100, "price_vnd": 1901 },
+    { "from_kwh": 101, "to_kwh": 200, "price_vnd": 2289 },
+    { "from_kwh": 201, "to_kwh": 400, "price_vnd": 2894 },
+    { "from_kwh": 401, "to_kwh": 700, "price_vnd": 3456 },
+    { "from_kwh": 701, "to_kwh": null, "price_vnd": 3844 }
+  ],
+  "renter_rules": [
+    "Sinh viên, người lao động thuê nhà: cứ 04 người được tính là một hộ sử dụng điện để tính định mức giá bậc thang (1 người = 1/4 định mức). Nguồn: Thông tư 60/2025/TT-BCT, theo hcc.nghean.gov.vn.",
+    "Thuê nhà dưới 12 tháng mà chủ nhà không kê khai đủ số người sử dụng điện: áp dụng giá bậc 2 (101-200 kWh) cho toàn bộ sản lượng, tức 2.289 đ/kWh chưa VAT. Nguồn: Thông tư 60/2025/TT-BCT; tienphong.vn/nguoiquansat.vn.",
+    "Chủ nhà phải cung cấp thông tin người thuê cho bên bán điện, báo khi số người thay đổi để điều chỉnh định mức, và không được thu của người thuê vượt số tiền trên hóa đơn tiền điện hằng tháng. Nguồn: hcc.nghean.gov.vn (tóm tắt Thông tư 60/2025/TT-BCT).",
+    "Kỳ ghi chỉ số đi qua thời điểm đổi giá (01/11/2026): sản lượng được phân bổ theo số ngày thực tế trước/sau ngày đổi giá (hoặc theo dữ liệu công tơ đo xa). Nguồn: hcc.nghean.gov.vn; giadinh.suckhoedoisong.vn."
+  ],
+  "sources": [
+    { "title": "Thông tin giá bán điện - Trung tâm CSKH EVNSPC (ghi QĐ 2892/QĐ-BCT ngày 31/10/2026, áp dụng 01/11/2026; giá cũ theo QĐ 1279/QĐ-BCT 09/05/2025)", "url": "https://cskh.evnspc.vn/TraCuu/ThongTinGiaDien", "accessed": "2026-11-12" },
+    { "title": "LuatVietnam - Quyết định 2892/QĐ-BCT: Giá điện sinh hoạt áp dụng 5 bậc từ ngày 01/11/2026", "url": "https://luatvietnam.vn/tin-van-ban-moi/quyet-dinh-2892-qd-bct-gia-dien-sinh-hoat-ap-dung-5-bac-tu-ngay-01-11-2026-186-115107-article.html", "accessed": "2026-11-12" },
+    { "title": "LuatVietnam - Cách tính tiền điện sinh hoạt theo biểu giá 5 bậc từ 01/11/2026", "url": "https://luatvietnam.vn/linh-vuc-khac/cach-tinh-tien-dien-sinh-hoat-theo-bieu-gia-5-bac-tu-01-11-2026-883-115111-article.html", "accessed": "2026-11-12" },
+    { "title": "BNEWS - EVN thông tin chi tiết cách tính tiền điện theo biểu giá 5 bậc mới", "url": "https://bnews.vn/evn-thong-tin-chi-tiet-cach-tinh-tien-dien-theo-bieu-gia-5-bac-moi/443070.html", "accessed": "2026-11-12" },
+    { "title": "SGGP - Chi tiết giá bán lẻ điện áp dụng từ ngày 1-11-2026", "url": "https://www.sggp.org.vn/chi-tiet-gia-ban-le-dien-ap-dung-tu-ngay-1-11-2026-post880092.html", "accessed": "2026-11-12" },
+    { "title": "Tiền Phong - Thông tin mới nhất về giá bán lẻ điện sinh hoạt theo 5 bậc", "url": "https://tienphong.vn/thong-tin-moi-nhat-ve-gia-ban-le-dien-sinh-hoat-theo-5-bac-post1891328.tpo", "accessed": "2026-11-12" },
+    { "title": "Cổng HCC Nghệ An - Quy định giá bán lẻ điện sinh hoạt (Thông tư 60/2025/TT-BCT)", "url": "https://hcc.nghean.gov.vn/tin-tong-hop/quy-dinh-gia-ban-le-dien-sinh-hoat-2555.html", "accessed": "2026-11-12" },
+    { "title": "LuatVietnam - Đã có Nghị quyết 204/2025/QH15 về giảm thuế GTGT đến hết năm 2026", "url": "https://luatvietnam.vn/tin-van-ban-moi/da-co-nghi-quyet-204-2025-qh15-ve-giam-thue-gia-tri-gia-tang-den-het-nam-2026-186-102713-article.html", "accessed": "2026-11-12" }
+  ],
+  "notes": "XÁC NHẬN: biểu giá 5 bậc theo QĐ 2892/QĐ-BCT là có thật (ngày ký 31/10/2026 theo EVNSPC và báo chí; hiệu lực 01/11/2026). Giá trên CHƯA gồm VAT; giá bán lẻ điện bình quân 2.159,9037 đ/kWh (giảm khoảng 2%). Ví dụ EVN: 300 kWh = 708.400 đ chưa VAT. CHƯA XÁC MINH TRỰC TIẾP: (1) Không đọc được toàn văn PDF của QĐ 2892 trên moit.gov.vn/thuvienphapluat — số liệu lấy từ bản tóm tắt LuatVietnam và trang CSKH EVNSPC/báo chí, các nguồn khớp nhau. (2) VAT 8%: theo Nghị quyết 204/2025/QH15 + Nghị định 174/2025/NĐ-CP (giảm 10%->8% từ 01/07/2025 đến 31/12/2026); điện không thuộc nhóm loại trừ, nhưng không tìm được hóa đơn EVN chính thức nêu rõ 8% cho tháng 11/2026 — độ tin cậy trung bình-cao. Từ 01/01/2027 có thể trở lại 10% nếu không gia hạn. (3) Giá điện công tơ thẻ trả trước: không tìm thấy trong nguồn — null/không đưa vào. (4) Quy tắc người thuê dựa trên Thông tư 60/2025/TT-BCT (02/12/2025) qua bản tóm tắt cổng HCC Nghệ An; chưa đọc nguyên văn thông tư, và chưa rõ thông tư có được sửa sau khi chuyển sang 5 bậc hay không (báo chí 11/2026 vẫn nêu bậc 2 = 2.289 đ/kWh cho người thuê không kê khai). (5) Biểu giá riêng cho bán lẻ nông thôn/khu tập thể/chung cư cũng 5 bậc nhưng không ghi lại ở đây."
+}

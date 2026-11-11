@@ -1,0 +1,568 @@
+{
+  "verified_at": "2026-11-12",
+  "evisa": {
+    "official_url": "https://evisa.gov.vn",
+    "official_url_alt": "https://thithucdientu.gov.vn",
+    "max_stay_days": 90,
+    "entries": "single or multiple (choose when applying)",
+    "fee_usd": {
+      "single": 25,
+      "multiple": 50
+    },
+    "processing": "About 3-5 working days (official guidance); apply at least 1 week before travel",
+    "eligibility": "Citizens of all countries and territories (since 15 Aug 2023, Resolution 127/NQ-CP / Law 23/2023/QH15)",
+    "fake_site_warning": "Only .gov.vn domains are official. Many look-alike sites (e.g. names containing 'vietnam-visa', 'evisa-vietnam', '.org/.com') charge USD 50-150+ for the same e-visa. The government fee is USD 25 (single) / USD 50 (multiple).",
+    "source": "https://www.vietnam.travel/plan-your-trip/visa-requirements (Vietnam National Authority of Tourism); fees also confirmed by U.S. Embassy Vietnam"
+  },
+  "passport_validity": "Passport valid at least 6 months beyond date of entry, with at least 2 blank pages (vietnam.travel). Visa-exemption entrants also need a passport valid >= 6 months.",
+  "visa_exempt": [
+    {
+      "country": "Germany",
+      "days": 45,
+      "valid_until": "2028-03-14",
+      "basis": "Unilateral, Resolution 44/NQ-CP (7 Mar 2025), any purpose, any passport type"
+    },
+    {
+      "country": "France",
+      "days": 45,
+      "valid_until": "2028-03-14",
+      "basis": "Unilateral, Resolution 44/NQ-CP"
+    },
+    {
+      "country": "Italy",
+      "days": 45,
+      "valid_until": "2028-03-14",
+      "basis": "Unilateral, Resolution 44/NQ-CP"
+    },
+    {
+      "country": "Spain",
+      "days": 45,
+      "valid_until": "2028-03-14",
+      "basis": "Unilateral, Resolution 44/NQ-CP"
+    },
+    {
+      "country": "United Kingdom",
+      "days": 45,
+      "valid_until": "2028-03-14",
+      "basis": "Unilateral, Resolution 44/NQ-CP"
+    },
+    {
+      "country": "Russia",
+      "days": 45,
+      "valid_until": "2028-03-14",
+      "basis": "Unilateral, Resolution 44/NQ-CP"
+    },
+    {
+      "country": "Japan",
+      "days": 45,
+      "valid_until": "2028-03-14",
+      "basis": "Unilateral, Resolution 44/NQ-CP"
+    },
+    {
+      "country": "South Korea",
+      "days": 45,
+      "valid_until": "2028-03-14",
+      "basis": "Unilateral, Resolution 44/NQ-CP"
+    },
+    {
+      "country": "Denmark",
+      "days": 45,
+      "valid_until": "2028-03-14",
+      "basis": "Unilateral, Resolution 44/NQ-CP"
+    },
+    {
+      "country": "Sweden",
+      "days": 45,
+      "valid_until": "2028-03-14",
+      "basis": "Unilateral, Resolution 44/NQ-CP"
+    },
+    {
+      "country": "Norway",
+      "days": 45,
+      "valid_until": "2028-03-14",
+      "basis": "Unilateral, Resolution 44/NQ-CP"
+    },
+    {
+      "country": "Finland",
+      "days": 45,
+      "valid_until": "2028-03-14",
+      "basis": "Unilateral, Resolution 44/NQ-CP"
+    },
+    {
+      "country": "Belgium",
+      "days": 45,
+      "valid_until": "2028-08-14",
+      "basis": "Unilateral, Resolution 229/NQ-CP (8 Aug 2025), tourism purpose, from 15 Aug 2025"
+    },
+    {
+      "country": "Bulgaria",
+      "days": 45,
+      "valid_until": "2028-08-14",
+      "basis": "Unilateral, Resolution 229/NQ-CP, tourism"
+    },
+    {
+      "country": "Croatia",
+      "days": 45,
+      "valid_until": "2028-08-14",
+      "basis": "Unilateral, Resolution 229/NQ-CP, tourism"
+    },
+    {
+      "country": "Czech Republic",
+      "days": 45,
+      "valid_until": "2028-08-14",
+      "basis": "Unilateral, Resolution 229/NQ-CP, tourism"
+    },
+    {
+      "country": "Hungary",
+      "days": 45,
+      "valid_until": "2028-08-14",
+      "basis": "Unilateral, Resolution 229/NQ-CP, tourism"
+    },
+    {
+      "country": "Luxembourg",
+      "days": 45,
+      "valid_until": "2028-08-14",
+      "basis": "Unilateral, Resolution 229/NQ-CP, tourism"
+    },
+    {
+      "country": "Netherlands",
+      "days": 45,
+      "valid_until": "2028-08-14",
+      "basis": "Unilateral, Resolution 229/NQ-CP, tourism"
+    },
+    {
+      "country": "Poland",
+      "days": 45,
+      "valid_until": "2028-08-14",
+      "basis": "Unilateral, Resolution 229/NQ-CP, tourism"
+    },
+    {
+      "country": "Romania",
+      "days": 45,
+      "valid_until": "2028-08-14",
+      "basis": "Unilateral, Resolution 229/NQ-CP, tourism"
+    },
+    {
+      "country": "Slovakia",
+      "days": 45,
+      "valid_until": "2028-08-14",
+      "basis": "Unilateral, Resolution 229/NQ-CP, tourism"
+    },
+    {
+      "country": "Slovenia",
+      "days": 45,
+      "valid_until": "2028-08-14",
+      "basis": "Unilateral, Resolution 229/NQ-CP, tourism"
+    },
+    {
+      "country": "Switzerland",
+      "days": 45,
+      "valid_until": "2028-08-14",
+      "basis": "Unilateral, Resolution 229/NQ-CP, tourism"
+    },
+    {
+      "country": "Belarus",
+      "days": 30,
+      "valid_until": null,
+      "basis": "Bilateral agreement (ordinary passports, in force 30 Jan 2025): 30 days per entry, max 90 days per year. NOTE: vietnam.travel lists Belarus under the 45-day group; KPMG reports Belarus was dropped from Resolution 44/NQ-CP. Conflicting - advise checking.",
+      "check_before_travel": true
+    },
+    {
+      "country": "Chile",
+      "days": 90,
+      "valid_until": null,
+      "basis": "Bilateral agreement"
+    },
+    {
+      "country": "Panama",
+      "days": 90,
+      "valid_until": null,
+      "basis": "Bilateral agreement"
+    },
+    {
+      "country": "Kyrgyzstan",
+      "days": 30,
+      "valid_until": null,
+      "basis": "Bilateral agreement"
+    },
+    {
+      "country": "Cambodia",
+      "days": 30,
+      "valid_until": null,
+      "basis": "ASEAN / bilateral"
+    },
+    {
+      "country": "Laos",
+      "days": 30,
+      "valid_until": null,
+      "basis": "ASEAN / bilateral"
+    },
+    {
+      "country": "Malaysia",
+      "days": 30,
+      "valid_until": null,
+      "basis": "ASEAN / bilateral"
+    },
+    {
+      "country": "Singapore",
+      "days": 30,
+      "valid_until": null,
+      "basis": "ASEAN / bilateral"
+    },
+    {
+      "country": "Thailand",
+      "days": 30,
+      "valid_until": null,
+      "basis": "ASEAN / bilateral"
+    },
+    {
+      "country": "Indonesia",
+      "days": 30,
+      "valid_until": null,
+      "basis": "ASEAN / bilateral. NOTE: vietnam.travel shows 14 days; MOFA list and most secondary sources show 30. Unverified - conservative value 14 if in doubt.",
+      "check_before_travel": true
+    },
+    {
+      "country": "Myanmar",
+      "days": 14,
+      "valid_until": null,
+      "basis": "ASEAN / bilateral. NOTE: vietnam.travel shows 30 days; MOFA list shows 14. Unverified.",
+      "check_before_travel": true
+    },
+    {
+      "country": "Philippines",
+      "days": 21,
+      "valid_until": null,
+      "basis": "ASEAN / bilateral"
+    },
+    {
+      "country": "Brunei",
+      "days": 14,
+      "valid_until": null,
+      "basis": "ASEAN / bilateral"
+    }
+  ],
+  "special_zones": [
+    {
+      "name": "Phu Quoc island",
+      "days": 30,
+      "basis": "All nationalities arriving directly (international flight) to Phu Quoc, without leaving the island; leaving to mainland requires visa/exemption"
+    }
+  ],
+  "esim_options": [
+    {
+      "name": "Airalo",
+      "notes": "Global eSIM marketplace; Vietnam data-only plans, install before departure. Requires eSIM-capable unlocked phone.",
+      "approx_price": "approx. US$4-5 for 1GB/7 days up to approx. US$20-30 for 10-20GB/30 days (approximate, check live price)"
+    },
+    {
+      "name": "Holafly",
+      "notes": "Unlimited-data eSIM sold by number of days; hotspot limits apply.",
+      "approx_price": "approx. US$19-50+ depending on 5-30 days (approximate)"
+    },
+    {
+      "name": "Klook eSIM",
+      "notes": "Vietnam eSIMs (often Viettel/Vinaphone network) and physical SIM airport pickup vouchers.",
+      "approx_price": "approx. US$3-15 for 5-30 day plans (approximate)"
+    },
+    {
+      "name": "Local tourist SIM at airport (Viettel / Vinaphone / Mobifone)",
+      "notes": "Counters in arrivals halls at Noi Bai (HAN), Tan Son Nhat (SGN, T2), Da Nang (DAD). Passport required for SIM registration. Airport prices are higher than city stores.",
+      "approx_price": "approx. 250,000-350,000 VND (US$10-13) at airport for a 30-day large-data package; city stores cheaper (approximate)"
+    }
+  ],
+  "affiliates": [
+    {
+      "program": "Airalo (direct, via Impact)",
+      "covers": "eSIMs for Vietnam and 200+ countries",
+      "commission": "From 10% per sale (secondary sources cite 10-12%)",
+      "cookie": "30 days",
+      "payout": "Via Impact: bank transfer or PayPal; monthly (validated by 7th, paid by end of following month). Minimum payout: null (not stated)",
+      "vietnam_resident_ok": "unclear",
+      "source": "https://www.airalo.com/blog/airalo-affiliate-program-faqs (official FAQ); residency acceptance not stated - Impact accepts publishers in most countries"
+    },
+    {
+      "program": "Travelpayouts (network)",
+      "covers": "12Go (buses/trains/ferries in Vietnam & SE Asia), Klook, GetYourGuide, Trip.com, Airalo, Booking.com, Agoda, Viator, Kiwi.com, DiscoverCars, Hostelworld and more (roster changes; check each offer)",
+      "commission": "Per brand: e.g. 12Go = 50% of 12Go revenue per order (avg ~US$2.90/booking); activities (GetYourGuide/Klook) roughly 5-10% (secondary)",
+      "cookie": "Per brand; 12Go 30 days",
+      "payout": "PayPal (min US$50), bank transfer (min US$/EUR 400), WebMoney (min US$10); monthly around the 20th. No Payoneer/Wise (secondary).",
+      "vietnam_resident_ok": "secondary",
+      "source": "https://www.travelpayouts.com/en/offers/12go-affiliate-program/ (official offer page); payout minimums from support.travelpayouts.com article 360012173160 (blocked to fetch, via search snippet)"
+    },
+    {
+      "program": "Klook Affiliate (direct)",
+      "covers": "Tours, attractions, transport, hotels, Klook eSIM in Vietnam",
+      "commission": "Category-based, roughly 2-5% attractions/tours up to higher on eSIM (secondary; varies by network)",
+      "cookie": "30 days (secondary; hotels may be shorter)",
+      "payout": "PayPal or bank transfer, monthly; minimum varies by channel (secondary reports US$50-150)",
+      "vietnam_resident_ok": "secondary",
+      "source": "Secondary (involve.asia, uppromote directory). Klook operates in Vietnam (klook.com/vi). Verify at https://affiliate.klook.com"
+    },
+    {
+      "program": "Trip.com Affiliate (direct)",
+      "covers": "Flights, hotels, trains, tours",
+      "commission": "Up to ~5.5% (varies by product; secondary)",
+      "cookie": "30 days web, 7 days app (secondary)",
+      "payout": "Direct: bank transfer, minimum US$200; via Travelpayouts PayPal possible",
+      "vietnam_resident_ok": "secondary",
+      "source": "Secondary (sg.trip.com/ask page, uppromote). Verify at https://www.trip.com/partners"
+    },
+    {
+      "program": "SafetyWing Ambassador",
+      "covers": "Nomad/travel medical insurance",
+      "commission": "~10% of premium, including renewals (secondary)",
+      "cookie": "364 days (secondary)",
+      "payout": "Monthly via PayPal or bank (Wise); no minimum reported (secondary)",
+      "vietnam_resident_ok": "unclear",
+      "source": "https://hello.safetywing.com/ambassador-page (official page, terms not fully readable); details from secondary sources"
+    }
+  ],
+  "destinations": [
+    {
+      "name": "Hanoi",
+      "days": "2-3",
+      "best_months": "Oct-Apr (Dec-Feb can be cool/drizzly)",
+      "transfers": [
+        {
+          "to": "Ha Long Bay",
+          "mode": "bus/limousine van",
+          "hours": "2.5-3"
+        },
+        {
+          "to": "Ninh Binh",
+          "mode": "bus/limousine or train",
+          "hours": "1.5-2.5"
+        },
+        {
+          "to": "Sapa",
+          "mode": "bus/limousine (or night train to Lao Cai + 1h road)",
+          "hours": "5-6 (train ~8 + 1)"
+        },
+        {
+          "to": "Ha Giang",
+          "mode": "bus/limousine",
+          "hours": "6-7"
+        },
+        {
+          "to": "Hue",
+          "mode": "flight (or train 12-14h)",
+          "hours": "1.2"
+        },
+        {
+          "to": "Da Nang",
+          "mode": "flight",
+          "hours": "1.3"
+        },
+        {
+          "to": "Ho Chi Minh City",
+          "mode": "flight",
+          "hours": "2-2.2"
+        }
+      ]
+    },
+    {
+      "name": "Ha Long Bay / Lan Ha Bay",
+      "days": "1-2 (overnight cruise)",
+      "best_months": "Mar-May, Sep-Nov (typhoon risk Jul-Sep can cancel cruises)",
+      "transfers": [
+        {
+          "to": "Hanoi",
+          "mode": "bus/limousine van",
+          "hours": "2.5-3"
+        },
+        {
+          "to": "Ninh Binh",
+          "mode": "private car/shuttle",
+          "hours": "3-3.5"
+        }
+      ]
+    },
+    {
+      "name": "Ninh Binh (Trang An, Tam Coc)",
+      "days": "1-2",
+      "best_months": "Feb-Apr, late May-Jun (rice harvest), Sep-Nov",
+      "transfers": [
+        {
+          "to": "Hanoi",
+          "mode": "bus/limousine or train",
+          "hours": "1.5-2.5"
+        }
+      ]
+    },
+    {
+      "name": "Sapa",
+      "days": "2-3",
+      "best_months": "Mar-May, Sep-Nov (rice terraces golden Sep-early Oct)",
+      "transfers": [
+        {
+          "to": "Hanoi",
+          "mode": "bus/limousine",
+          "hours": "5-6"
+        }
+      ]
+    },
+    {
+      "name": "Ha Giang Loop",
+      "days": "3-4",
+      "best_months": "Sep-Nov (buckwheat flowers Oct-Nov), Mar-May",
+      "transfers": [
+        {
+          "to": "Hanoi",
+          "mode": "bus/limousine (often overnight sleeper)",
+          "hours": "6-7"
+        }
+      ]
+    },
+    {
+      "name": "Hue",
+      "days": "1-2",
+      "best_months": "Feb-Apr (heavy rain/flood risk Sep-Dec)",
+      "transfers": [
+        {
+          "to": "Da Nang / Hoi An",
+          "mode": "car via Hai Van Pass or train to Da Nang",
+          "hours": "2.5-3.5"
+        },
+        {
+          "to": "Hanoi",
+          "mode": "flight",
+          "hours": "1.2"
+        }
+      ]
+    },
+    {
+      "name": "Da Nang & Hoi An",
+      "days": "3-4",
+      "best_months": "Feb-Aug (rain/typhoon risk Sep-Dec)",
+      "transfers": [
+        {
+          "to": "Hoi An <-> Da Nang",
+          "mode": "car/taxi",
+          "hours": "0.75"
+        },
+        {
+          "to": "Ho Chi Minh City",
+          "mode": "flight",
+          "hours": "1.3"
+        },
+        {
+          "to": "Hanoi",
+          "mode": "flight",
+          "hours": "1.3"
+        }
+      ]
+    },
+    {
+      "name": "Ho Chi Minh City (Saigon)",
+      "days": "2-3",
+      "best_months": "Dec-Apr (dry season)",
+      "transfers": [
+        {
+          "to": "Mekong Delta (Can Tho / Ben Tre)",
+          "mode": "bus/limousine",
+          "hours": "2-4"
+        },
+        {
+          "to": "Phu Quoc",
+          "mode": "flight",
+          "hours": "1"
+        },
+        {
+          "to": "Da Lat",
+          "mode": "flight (bus 6-8h)",
+          "hours": "0.9"
+        },
+        {
+          "to": "Nha Trang",
+          "mode": "flight (train ~7-8h)",
+          "hours": "1"
+        }
+      ]
+    },
+    {
+      "name": "Mekong Delta (Can Tho, Ben Tre)",
+      "days": "1-2",
+      "best_months": "Dec-Apr (dry); Aug-Nov high water season",
+      "transfers": [
+        {
+          "to": "Ho Chi Minh City",
+          "mode": "bus/limousine",
+          "hours": "2-4"
+        }
+      ]
+    },
+    {
+      "name": "Phu Quoc",
+      "days": "3-4",
+      "best_months": "Nov-Apr (dry, calmer sea)",
+      "transfers": [
+        {
+          "to": "Ho Chi Minh City",
+          "mode": "flight",
+          "hours": "1"
+        },
+        {
+          "to": "Hanoi",
+          "mode": "flight",
+          "hours": "2.2"
+        }
+      ]
+    },
+    {
+      "name": "Da Lat",
+      "days": "2",
+      "best_months": "Dec-Mar (dry, cool)",
+      "transfers": [
+        {
+          "to": "Nha Trang",
+          "mode": "bus/limousine",
+          "hours": "3.5-4"
+        },
+        {
+          "to": "Ho Chi Minh City",
+          "mode": "flight",
+          "hours": "0.9"
+        }
+      ]
+    },
+    {
+      "name": "Nha Trang",
+      "days": "2-3",
+      "best_months": "Jan-Aug (rainy Oct-Dec)",
+      "transfers": [
+        {
+          "to": "Da Lat",
+          "mode": "bus/limousine",
+          "hours": "3.5-4"
+        },
+        {
+          "to": "Ho Chi Minh City",
+          "mode": "flight",
+          "hours": "1"
+        }
+      ]
+    }
+  ],
+  "sources": [
+    "https://www.vietnam.travel/plan-your-trip/visa-requirements",
+    "https://www.vietnam.travel/plan-your-trip/official-vietnam-evisa-application",
+    "https://evisa.gov.vn",
+    "https://en.baochinhphu.vn/print/viet-nam-waives-visas-for-citizens-of-24-countries-from-mid-august-111250815144715035.htm",
+    "https://kpmg.com/vn/en/home/insights/2025/08/new-immigration-regulations-visa-exemption.html",
+    "https://assets.kpmg.com/content/dam/kpmgsites/xx/pdf/2025/04/fa25-081.pdf.coredownload.pdf",
+    "https://vnembassy-jp.org/en/vietnam-exempts-visas-under-tourism-development-stimulus-program-citizens-12-countries-belgium",
+    "https://vietnamnews.vn/society/1723333/visa-exemptions-for-12-more-countries-take-effect-tomorrow.html",
+    "https://www.airalo.com/blog/airalo-affiliate-program-faqs",
+    "https://www.travelpayouts.com/en/offers/12go-affiliate-program/",
+    "https://www.travelpayouts.com/en/offers/bookingcom-affiliate-program",
+    "https://support.travelpayouts.com/hc/en-us/articles/360012173160-Minimum-amount-for-revenue-payout",
+    "https://involve.asia/blog/klook-affiliate-program/",
+    "https://sg.trip.com/ask/questions/trip.com-affiliate-program.html",
+    "https://hello.safetywing.com/ambassador-page",
+    "https://www.vietnamtourism.com/en/wifi-and-internet-in-vietnam-sim-cards-esims-and-staying-connected",
+    "https://saily.com/blog/sim-card-in-vietnam/"
+  ],
+  "notes": "Visa rules checked 2026-11-12; no new unilateral exemptions in 2026 were found beyond Resolutions 44/NQ-CP (to 2028-03-14) and 229/NQ-CP (to 2028-08-14). The old 30-day gap rule between exempt entries no longer applies. Exemption stays cannot be extended into a visa without exit in most cases; stays longer than the exemption need the 90-day e-visa. Conflicts: Belarus (45 vs 30 days), Indonesia/Myanmar (14 vs 30) between vietnam.travel and other official/secondary lists - show 'check before travel'. US, Canada, Australia, India, China etc. are NOT exempt: e-visa needed. Affiliate terms change often; travel-network numbers are secondary unless marked; no program pages were signed into. All prices approximate. Transfer times are typical, excluding traffic/delays.",
+  "notes_public": "Rules checked 2026-11-12. Visa-free stays cannot usually be extended; for longer trips use the 90-day e-visa. Phu Quoc island: 30 days visa-free for all nationalities arriving directly, without leaving the island. US, Canada, Australia, India, China and others need an e-visa."
+}

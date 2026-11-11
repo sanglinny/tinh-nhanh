@@ -1,0 +1,10 @@
+{
+  "note": "Fill 'url' only after the owner has registered with the affiliate network and copied the real tracking link. Empty url = the box stays hidden. Never invent links.",
+  "offers": {
+    "energy-saving": {"title": "Thiết bị đo & tiết kiệm điện", "text": "Ổ cắm đo điện, bóng LED, quạt tiết kiệm điện.", "cta": "Xem trên Shopee", "url": ""},
+    "accounting-software": {"title": "Phần mềm kế toán, hóa đơn điện tử cho hộ kinh doanh", "text": "Giúp ghi sổ doanh thu và xuất hóa đơn đúng quy định.", "cta": "Tìm hiểu", "url": ""},
+    "esim": {"title": "Vietnam eSIM", "text": "Get mobile data the moment you land.", "cta": "Compare eSIM plans", "url": ""},
+    "tours": {"title": "Tours & transfers", "text": "Ha Long cruises, airport pickup, train tickets.", "cta": "See options", "url": ""},
+    "insurance": {"title": "Travel medical insurance", "text": "Cover for trips in Vietnam and Southeast Asia.", "cta": "Get a quote", "url": ""}
+  }
+}

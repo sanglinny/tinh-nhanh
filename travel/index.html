@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan your Vietnam trip — visa check, eSIM & itinerary builder</title>
+<meta name="description" content="Do you need a visa for Vietnam? Check visa exemption days for your passport, the official e-visa rules, eSIM options and build a simple day-by-day route.">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="../index.html">Tính <span>Nhanh</span></a>
+  <nav class="top">
+    <a href="../tien-dien.html">Tiền điện</a>
+    <a href="../thue-ho-kinh-doanh.html">Thuế hộ kinh doanh</a>
+    <a href="index.html" aria-current="page">Vietnam travel</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <h1>Plan your Vietnam trip</h1>
+  <p class="lede" id="meta">Loading verified entry rules…</p>
+
+  <h2>1. Do I need a visa?</h2>
+  <section class="card">
+    <form class="calc" id="f-visa">
+      <div class="row">
+        <label>Passport country <select id="country"></select></label>
+        <label>Days in Vietnam <input id="stay" type="number" min="1" max="120" value="14" inputmode="numeric"></label>
+      </div>
+      <button type="submit">Check</button>
+    </form>
+    <div class="result" id="r-visa" aria-live="polite"></div>
+  </section>
+
+  <h2>2. Build a route</h2>
+  <section class="card">
+    <form class="calc" id="f-route">
+      <label>Total days <input id="days" type="number" min="3" max="60" value="12" inputmode="numeric"></label>
+      <fieldset style="border:0;padding:0;margin:0">
+        <legend style="font-weight:600;margin-bottom:6px">Places (north → south)</legend>
+        <div class="grid" id="places" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px"></div>
+      </fieldset>
+      <button type="submit">Build my route</button>
+    </form>
+    <div class="result" id="r-route" aria-live="polite"></div>
+  </section>
+
+  <h2>3. Stay connected & covered</h2>
+  <div class="card" id="esim"></div>
+  <div class="grid" style="margin-top:14px">
+    <div class="aff" data-aff="esim" hidden><strong data-aff-title></strong><p data-aff-text class="muted"></p><a data-aff-link></a>
+      <p class="disclosure">Affiliate link — we may earn a commission at no extra cost to you.</p></div>
+    <div class="aff" data-aff="tours" hidden><strong data-aff-title></strong><p data-aff-text class="muted"></p><a data-aff-link></a>
+      <p class="disclosure">Affiliate link — we may earn a commission at no extra cost to you.</p></div>
+    <div class="aff" data-aff="insurance" hidden><strong data-aff-title></strong><p data-aff-text class="muted"></p><a data-aff-link></a>
+      <p class="disclosure">Affiliate link — we may earn a commission at no extra cost to you.</p></div>
+  </div>
+
+  <div class="note" id="notes" hidden style="margin-top:18px"></div>
+  <div class="sources" id="sources"></div>
+  <p class="muted"><small>Entry rules change. Always confirm on the official Vietnam e-visa portal before you travel; we are not affiliated with any government.</small></p>
+</main>
+
+<footer class="site"><div class="wrap">Tính Nhanh — free tools, no data collected. Some links are affiliate links and are labelled. <a href="../gioi-thieu.html">About</a></div></footer>
+
+<script type="module">
+import { loadJSON, escapeHtml, fillAffiliates } from "../assets/common.js";
+import { entryRule, buildItinerary } from "../assets/travel.js";
+
+let D;
+try { D = await loadJSON("../data/vietnam-travel.json"); }
+catch (e) { document.getElementById("meta").textContent = "Verified travel data is not available yet. " + e.message; throw e; }
+
+const ev = D.evisa || {};
+document.getElementById("meta").innerHTML =
+  `Rules checked on ${escapeHtml(D.verified_at)}. Official e-visa portal: <a href="${escapeHtml(ev.official_url)}" rel="noopener" target="_blank">${escapeHtml(ev.official_url)}</a> — beware of look-alike agent sites charging extra.`;
+
+const sel = document.getElementById("country");
+// Large source markets that are NOT visa-exempt (per the data notes): listed so visitors find their passport.
+const EVISA_ONLY = ["United States", "Canada", "Australia", "New Zealand", "India", "China", "Taiwan", "Israel", "Ireland", "Austria", "Portugal", "Greece", "Mexico", "Brazil", "South Africa"];
+const countries = [...(D.visa_exempt || []).map((c) => c.country), ...EVISA_ONLY, "Other country"]
+  .filter((v, i, a) => a.indexOf(v) === i).sort((a, b) => a === "Other country" ? 1 : b === "Other country" ? -1 : a.localeCompare(b));
+sel.innerHTML = countries.map((c) => `<option>${escapeHtml(c)}</option>`).join("");
+
+document.getElementById("f-visa").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const stay = Number(document.getElementById("stay").value);
+  const r = entryRule(D, sel.value, stay);
+  const fee = ev.fee_usd ? ` Fee: US$${ev.fee_usd.single} single entry${ev.fee_usd.multiple ? `, US$${ev.fee_usd.multiple} multiple` : ""}.` : "";
+  const out = document.getElementById("r-visa");
+  if (r.kind === "exempt") {
+    const entry = D.visa_exempt.find((c) => c.country === sel.value);
+    out.innerHTML = `<p class="big">No visa needed</p><p class="muted">${escapeHtml(sel.value)} passports: visa-free up to ${r.days} days${r.validUntil ? ` (policy valid until ${escapeHtml(r.validUntil)})` : ""}. ${escapeHtml(D.passport_validity || "")}</p>
+      <p class="muted"><small>Basis: ${escapeHtml((r.basis || "").split(/\s*NOTE:/)[0])}</small></p>` +
+      (entry?.check_before_travel ? `<p class="note">Official sources disagree on the number of days for this passport — confirm with the embassy or the official portal before you book.</p>` : "");
+  } else if (r.kind === "evisa") {
+    out.innerHTML = `<p class="big">Get an e-visa</p><p class="muted">${r.exemptDays ? `Visa-free stay is ${r.exemptDays} days, shorter than your trip. ` : ""}E-visa: up to ${r.maxDays} days, ${escapeHtml(ev.entries || "")}.${fee} Processing: ${escapeHtml(ev.processing || "see portal")}. Apply only at the official portal above.</p>`;
+  } else {
+    out.innerHTML = `<p class="big">Trip longer than ${r.maxDays} days</p><p class="muted">A standard e-visa does not cover this stay. Check other visa types with a Vietnamese embassy.</p>`;
+  }
+});
+
+const placesEl = document.getElementById("places");
+placesEl.innerHTML = (D.destinations || []).map((d, i) =>
+  `<label style="font-weight:400;display:flex;gap:8px;align-items:center" class="card"><input type="checkbox" value="${escapeHtml(d.name)}" ${i < 4 ? "checked" : ""} style="width:auto">
+   <span><strong>${escapeHtml(d.name)}</strong><br><small class="muted">${escapeHtml(d.days)} days · best ${escapeHtml(d.best_months || "")}</small></span></label>`).join("");
+
+document.getElementById("f-route").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const chosen = [...placesEl.querySelectorAll("input:checked")].map((i) => i.value);
+  const it = buildItinerary(D, chosen, Number(document.getElementById("days").value));
+  let day = 1;
+  const rows = it.plan.map((p, i) => {
+    const leg = it.legs[i - 1];
+    const s = `<tr><td>Day ${day}–${day + p.nights - 1}</td><td><strong>${escapeHtml(p.name)}</strong>${leg ? `<br><small class="muted">from ${escapeHtml(leg.from)}: ${escapeHtml(leg.mode || "check transport")}${leg.hours ? `, ~${escapeHtml(leg.hours)} h` : ""}</small>` : ""}</td><td class="num">${p.nights} days</td></tr>`;
+    day += p.nights; return s;
+  }).join("");
+  document.getElementById("r-route").innerHTML =
+    (it.short ? `<p class="note">These places need at least ${it.used} days — remove one or add days.</p>` : "") +
+    `<div class="table-scroll"><table><tbody>${rows}</tbody></table></div>` +
+    (it.spare ? `<p class="muted">${it.spare} spare day(s): add a beach day or keep a buffer for weather.</p>` : "");
+});
+
+document.getElementById("esim").innerHTML = `<strong>SIM / eSIM options</strong><ul>` +
+  (D.esim_options || []).map((o) => `<li><strong>${escapeHtml(o.name)}</strong> — ${escapeHtml(o.notes)}${o.approx_price ? ` <span class="muted">(approx. ${escapeHtml(o.approx_price)})</span>` : ""}</li>`).join("") + `</ul>`;
+
+if (D.notes_public) { const n = document.getElementById("notes"); n.textContent = D.notes_public; n.hidden = false; }
+const src = document.getElementById("sources");
+if (D.sources?.length) src.innerHTML = `<p>Sources (checked ${escapeHtml(D.verified_at)}):</p><ul>` +
+  D.sources.map((s) => `<li><a href="${escapeHtml(s.url)}" rel="nofollow noopener" target="_blank">${escapeHtml(s.title)}</a></li>`).join("") + "</ul>";
+
+document.getElementById("f-visa").requestSubmit();
+document.getElementById("f-route").requestSubmit();
+fillAffiliates("../");
+</script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tính tiền điện theo bậc thang 2026 — Tính Nhanh</title>
+<meta name="description" content="Tính tiền điện sinh hoạt theo biểu giá bậc thang mới nhất, có VAT, và chia tiền điện phòng trọ theo đồng hồ riêng từng phòng.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="wrap">
+  <a class="brand" href="index.html">Tính <span>Nhanh</span></a>
+  <nav class="top">
+    <a href="tien-dien.html" aria-current="page">Tiền điện</a>
+    <a href="thue-ho-kinh-doanh.html">Thuế hộ kinh doanh</a>
+    <a href="travel/index.html">Vietnam travel</a>
+  </nav>
+</div></header>
+
+<main class="wrap">
+  <h1>Tính tiền điện sinh hoạt theo bậc thang</h1>
+  <p class="lede" id="tariff-meta">Đang tải biểu giá…</p>
+
+  <section class="card">
+    <form class="calc" id="f-home">
+      <div class="row">
+        <label>Số điện tiêu thụ (kWh)
+          <input id="kwh" type="number" inputmode="decimal" min="0" step="1" value="250" required>
+        </label>
+        <label>Số người đăng ký sử dụng <small>người thuê nhà: 4 người = 1 hộ</small>
+          <input id="persons" type="number" inputmode="numeric" min="1" value="4">
+        </label>
+      </div>
+      <label style="font-weight:400;display:flex;gap:8px;align-items:center">
+        <input id="undeclared" type="checkbox" style="width:auto"> Thuê nhà dưới 12 tháng và chủ nhà chưa kê khai số người thuê với điện lực
+      </label>
+      <button type="submit">Tính tiền điện</button>
+    </form>
+    <div class="result" id="r-home" aria-live="polite"></div>
+  </section>
+
+  <h2>Chia tiền điện phòng trọ (chung một đồng hồ tổng)</h2>
+  <p class="muted">Nhập số kWh đồng hồ riêng và số người của từng phòng. Hóa đơn được tính một lần theo bậc thang cho cả nhà, rồi chia theo tỷ lệ kWh.</p>
+  <section class="card">
+    <form class="calc" id="f-rooms">
+      <div class="rooms" id="rooms"></div>
+      <div><button type="button" class="ghost" id="add-room">+ Thêm phòng</button></div>
+      <button type="submit">Chia tiền</button>
+    </form>
+    <div class="result" id="r-rooms" aria-live="polite"></div>
+  </section>
+
+  <h2>Gợi ý</h2>
+  <div class="aff" data-aff="energy-saving" hidden>
+    <strong data-aff-title></strong>
+    <p data-aff-text class="muted"></p>
+    <a data-aff-link></a>
+    <p class="disclosure">Liên kết tiếp thị: chúng tôi có thể nhận hoa hồng nếu bạn mua qua liên kết này, giá bạn trả không đổi.</p>
+  </div>
+
+  <h2>Quy định cho người thuê nhà</h2>
+  <div class="card"><ul id="renter-rules"></ul></div>
+
+  <div class="note" id="tariff-notes" hidden></div>
+  <div class="sources" id="sources"></div>
+  <p class="muted"><small>Kết quả là ước tính để tham khảo. Số tiền chính xác theo hóa đơn của đơn vị điện lực.</small></p>
+</main>
+
+<footer class="site"><div class="wrap">Tính Nhanh — công cụ miễn phí, không thu thập dữ liệu bạn nhập. <a href="gioi-thieu.html">Giới thiệu & liên hệ</a></div></footer>
+
+<script type="module">
+import { loadJSON, vnd, num, renderSources, escapeHtml, fillAffiliates } from "./assets/common.js";
+import { tierBreakdown, householdsFor, splitBoardingHouse, flatTierBill } from "./assets/electricity.js";
+
+let T;
+try { T = await loadJSON("data/electricity-tariff.json"); }
+catch (e) { document.getElementById("tariff-meta").textContent = "Chưa có biểu giá đã kiểm chứng. " + e.message; throw e; }
+
+document.getElementById("tariff-meta").textContent =
+  `Biểu giá theo ${T.decision}, áp dụng từ ${T.effective_from}. Giá chưa gồm ${T.vat_percent}% VAT; kết quả bên dưới đã cộng VAT.`;
+renderSources(document.getElementById("sources"), T.sources, T.verified_at);
+const publicNotes = [T.notes_public, T.vat_note].filter(Boolean).join(" ");
+if (publicNotes) { const n = document.getElementById("tariff-notes"); n.textContent = publicNotes; n.hidden = false; }
+document.getElementById("renter-rules").innerHTML = (T.renter_rules || []).map((r) => `<li>${escapeHtml(r)}</li>`).join("");
+
+function table(rows) {
+  return `<div class="table-scroll"><table><thead><tr><th>Bậc</th><th class="num">kWh</th><th class="num">Đơn giá</th><th class="num">Thành tiền</th></tr></thead><tbody>` +
+    rows.map((r, i) => `<tr><td>Bậc ${i + 1} (${num(r.from)}–${r.to == null ? "trở lên" : num(r.to)})</td><td class="num">${num(r.kwh, 1)}</td><td class="num">${vnd(r.price)}</td><td class="num">${vnd(r.amount)}</td></tr>`).join("") +
+    `</tbody></table></div>`;
+}
+
+document.getElementById("f-home").addEventListener("submit", (ev) => {
+  ev.preventDefault();
+  const kwh = Number(document.getElementById("kwh").value);
+  const persons = Number(document.getElementById("persons").value) || 1;
+  const undeclared = document.getElementById("undeclared").checked;
+  const households = householdsFor(persons, T);
+  const b = undeclared ? flatTierBill(T, kwh, T.undeclared_renter_tier_index ?? 1) : tierBreakdown(T, kwh, { households });
+  const how = undeclared
+    ? `Toàn bộ sản lượng tính một giá bậc ${(T.undeclared_renter_tier_index ?? 1) + 1} (${vnd(b.rows[0].price)}/kWh chưa VAT).`
+    : (households > 1 ? `Định mức mỗi bậc được nhân ${households} lần (${persons} người, ${T.persons_per_household} người = 1 hộ).` : "");
+  document.getElementById("r-home").innerHTML =
+    `<p class="big">${vnd(b.total)}</p>
+     <p class="muted">Gồm ${vnd(b.subtotal)} tiền điện + ${vnd(b.vat)} VAT (${T.vat_percent}%). Trung bình ${vnd(b.total / (kwh || 1))}/kWh. ${how}</p>` +
+    (undeclared ? "" : table(b.rows));
+});
+
+const roomsEl = document.getElementById("rooms");
+function addRoom(name = "", kwh = "", persons = 1) {
+  const i = roomsEl.children.length + 1;
+  const div = document.createElement("div");
+  div.className = "room";
+  div.innerHTML = `<label>Phòng<input value="${escapeHtml(name || "Phòng " + i)}" data-k="name"></label>
+    <label>kWh<input type="number" min="0" inputmode="decimal" value="${kwh}" data-k="kwh"></label>
+    <label>Số người<input type="number" min="0" inputmode="numeric" value="${persons}" data-k="persons"></label>
+    <button type="button" class="ghost" aria-label="Xóa phòng">✕</button>`;
+  div.querySelector("button").onclick = () => div.remove();
+  roomsEl.appendChild(div);
+}
+addRoom("Phòng 1", 120, 2); addRoom("Phòng 2", 80, 1); addRoom("Phòng 3", 150, 3);
+document.getElementById("add-room").onclick = () => addRoom();
+
+document.getElementById("f-rooms").addEventListener("submit", (ev) => {
+  ev.preventDefault();
+  const rooms = [...roomsEl.children].map((d) => Object.fromEntries([...d.querySelectorAll("input")].map((i) => [i.dataset.k, i.value])));
+  const s = splitBoardingHouse(T, rooms);
+  document.getElementById("r-rooms").innerHTML =
+    `<p class="big">${vnd(s.bill.total)}</p>
+     <p class="muted">${num(s.totalKwh)} kWh, ${s.persons} người → định mức ${s.households} hộ. Giá bình quân ${vnd(s.avgPerKwh)}/kWh (đã gồm VAT).</p>
+     <div class="table-scroll"><table><thead><tr><th>Phòng</th><th class="num">kWh</th><th class="num">Phải trả</th></tr></thead><tbody>` +
+    s.rooms.map((r) => `<tr><td>${escapeHtml(r.name)}</td><td class="num">${num(r.kwh)}</td><td class="num">${vnd(r.share)}</td></tr>`).join("") +
+    `</tbody></table></div>`;
+});
+
+document.getElementById("f-home").requestSubmit();
+fillAffiliates();
+</script>
+</body>
+</html>
