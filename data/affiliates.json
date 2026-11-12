@@ -1,10 +1,13 @@
 {
-  "note": "Fill 'url' only after the owner has registered with the affiliate network and copied the real tracking link. Empty url = the box stays hidden. Never invent links.",
+  "note": "Fill 'url' only with real tracking links from the owner's affiliate accounts. Empty url = the box stays hidden. Never invent links. Source of truth: docs/market-research/affiliate-links.local.md (local).",
   "offers": {
-    "energy-saving": {"title": "Thiết bị đo & tiết kiệm điện", "text": "Ổ cắm đo điện, bóng LED, quạt tiết kiệm điện.", "cta": "Xem trên Shopee", "url": ""},
+    "energy-saving": {"title": "Thiết bị đo & tiết kiệm điện", "text": "Ổ cắm đo điện, bóng LED, quạt tiết kiệm điện.", "cta": "Xem sản phẩm", "url": ""},
     "accounting-software": {"title": "Phần mềm kế toán, hóa đơn điện tử cho hộ kinh doanh", "text": "Giúp ghi sổ doanh thu và xuất hóa đơn đúng quy định.", "cta": "Tìm hiểu", "url": ""},
+    "business-bank": {"title": "Tài khoản ngân hàng riêng cho việc kinh doanh", "text": "Tách tiền kinh doanh khỏi tiền cá nhân giúp theo dõi doanh thu khi kê khai. Ví dụ: mở tài khoản trên app MB Bank (điều kiện và phí theo quy định của ngân hàng).", "cta": "Mở tài khoản MB Bank", "url": "https://shorten.asia/7uqpY2uk"},
+    "trains": {"title": "Train tickets in Vietnam", "text": "Hanoi – Hue – Da Nang – Saigon on the Reunification line. Compare times and seats.", "cta": "See train times on Trip.com", "url": "https://shorten.asia/Fq1y61Pn"},
+    "bus-central": {"title": "Da Nang – Hue – Hoi An by coach", "text": "Hai Van runs scheduled coaches and airport transfers in central Vietnam.", "cta": "Check Hai Van routes", "url": "https://shorten.asia/32bURCPJ"},
+    "tours": {"title": "Tours & activities", "text": "Ha Long cruises, Mekong day trips, cooking classes and more.", "cta": "Browse tours on GetYourGuide", "url": "https://shorten.asia/4Bj3atFM"},
     "esim": {"title": "Vietnam eSIM", "text": "Get mobile data the moment you land.", "cta": "Compare eSIM plans", "url": ""},
-    "tours": {"title": "Tours & transfers", "text": "Ha Long cruises, airport pickup, train tickets.", "cta": "See options", "url": ""},
     "insurance": {"title": "Travel medical insurance", "text": "Cover for trips in Vietnam and Southeast Asia.", "cta": "Get a quote", "url": ""}
   }
 }
