@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="Điện &amp; gia đình">
+<rect width="1200" height="675" fill="#E3F1EE"/>
+<circle cx="911" cy="161" r="231" fill="#0B6B63" opacity=".10"/>
+<circle cx="231" cy="549" r="131" fill="#F2B84B" opacity=".18"/>
+<rect x="80" y="80" width="150" height="14" rx="7" fill="#0B6B63" opacity=".25"/>
+<path d="M640 120 470 380h120l-30 190 200-280H640z" fill="#0B6B63"/><rect x="380" y="470" width="90" height="120" rx="18" fill="#F2B84B"/><path d="M405 470v-40M445 470v-40" stroke="#0B6B63" stroke-width="16" stroke-linecap="round"/>
+</svg>

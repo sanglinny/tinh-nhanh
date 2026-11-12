@@ -9,23 +9,64 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
 <meta name="theme-color" content="#0f766e">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=fb4f2e9e">
 </head>
 <body>
 <header class="site"><div class="wrap">
-  <a class="brand" href="index.html">Tính <span>Nhanh</span></a>
-  <nav class="top"><a href="tien-dien.html">Tiền điện</a><a href="thue-ho-kinh-doanh.html">Thuế hộ kinh doanh</a><a href="travel/index.html">Vietnam travel</a></nav>
+  <a class="brand" href="index.html"><span class="mark" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="#F2B84B"/></svg></span>Tính <span class="hl">Nhanh</span></a>
+  <nav class="top" aria-label="Chính">
+    <a href="index.html">Công cụ</a>
+    <a href="tien-dien.html">Tiền điện</a>
+    <a href="thue-ho-kinh-doanh.html">Thuế hộ KD</a>
+    <a href="huong-dan/index.html">Hướng dẫn</a>
+    <a href="travel/index.html">Du lịch</a>
+    <a href="gioi-thieu.html" aria-current="page">Giới thiệu</a>
+  </nav>
 </div></header>
-<main class="wrap">
+<main class="wrap narrow">
   <h1>Giới thiệu</h1>
-  <p>Tính Nhanh là dự án cá nhân, làm các công cụ tính toán nhỏ cho nhu cầu hằng ngày. Số liệu lấy từ văn bản và trang chính thức; mỗi công cụ ghi nguồn và ngày kiểm tra.</p>
-  <h2>Dữ liệu của bạn</h2>
-  <p>Mọi phép tính chạy ngay trên trình duyệt của bạn. Chúng tôi không gửi và không lưu số liệu bạn nhập.</p>
-  <h2>Liên kết tiếp thị</h2>
-  <p>Một số trang có liên kết tiếp thị (affiliate). Nếu bạn mua qua liên kết đó, chúng tôi có thể nhận hoa hồng; giá bạn trả không đổi. Liên kết luôn được ghi rõ ngay bên cạnh.</p>
-  <h2>Liên hệ</h2>
+  <p class="lede">Tính Nhanh là dự án cá nhân, làm các công cụ tính toán nhỏ cho nhu cầu hằng ngày. Số liệu lấy từ văn bản và trang chính thức; mỗi công cụ ghi nguồn và ngày kiểm tra.</p>
+  <h2 id="phuong-phap">Phương pháp & nguồn dữ liệu</h2>
+  <ul>
+    <li>Số liệu (biểu giá điện, ngưỡng và tỷ lệ thuế, quy định visa) được đối chiếu với quyết định, nghị định và trang chính thức; tên văn bản, ngày hiệu lực và ngày kiểm tra ghi ngay trên từng công cụ.</li>
+    <li>Mỗi công thức có bộ kiểm thử tự động với ví dụ công bố chính thức (ví dụ EVN: 300 kWh = 708.400 đ chưa VAT).</li>
+    <li>Hệ thống tự kiểm tra các trang nguồn chính thức hằng tuần; khi nguồn thay đổi, số liệu được rà soát lại trước khi cập nhật.</li>
+    <li>Kết quả chỉ để tham khảo, không thay thế hóa đơn của điện lực, tư vấn thuế hoặc thông báo của cơ quan nhà nước.</li>
+  </ul>
+  <h2 id="du-lieu">Dữ liệu của bạn</h2>
+  <p>Mọi phép tính chạy ngay trên trình duyệt của bạn. Chúng tôi không gửi và không lưu số liệu bạn nhập. Trang không dùng cookie theo dõi.</p>
+  <h2 id="tiep-thi">Liên kết tiếp thị</h2>
+  <p>Một số trang có liên kết tiếp thị (affiliate). Nếu bạn mua qua liên kết đó, Tính Nhanh có thể nhận hoa hồng; giá bạn trả không đổi. Liên kết luôn được gắn nhãn "LIÊN KẾT TIẾP THỊ" ngay tại chỗ hiển thị, đặt sau kết quả tính toán và không ảnh hưởng đến kết quả.</p>
+  <h2 id="lien-he">Liên hệ</h2>
   <p>Báo lỗi số liệu hoặc góp ý: <a href="https://github.com/sanglinny/tinh-nhanh/issues" rel="noopener" target="_blank">gửi tại trang góp ý của dự án</a>. Chúng tôi sửa số liệu sai trong thời gian sớm nhất và ghi lại ngày cập nhật.</p>
 </main>
+<footer class="site"><div class="wrap">
+  <div class="foot-grid">
+    <div>
+      <a class="brand" href="index.html" style="color:#fff"><span class="mark" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="#F2B84B"/></svg></span>Tính Nhanh</a>
+      <p style="margin:10px 0 0;max-width:36ch">Công cụ tính toán miễn phí và hướng dẫn dễ hiểu. Mỗi con số đều dẫn nguồn chính thức và ngày kiểm tra.</p>
+    </div>
+    <div><b>Công cụ</b><ul>
+      <li><a href="tien-dien.html">Tính tiền điện</a></li>
+      <li><a href="tien-dien.html#phong-tro">Chia tiền phòng trọ</a></li>
+      <li><a href="thue-ho-kinh-doanh.html">Thuế hộ kinh doanh</a></li>
+      <li><a href="travel/index.html">Vietnam trip planner</a></li>
+    </ul></div>
+    <div><b>Hướng dẫn</b><ul>
+      <li><a href="huong-dan/index.html">Tất cả bài viết</a></li>
+      <li><a href="huong-dan/chia-tien-dien-phong-tro.html">Chia tiền điện phòng trọ đúng quy định 2…</a></li>
+      <li><a href="huong-dan/cach-tinh-tien-dien-5-bac-2026.html">Cách tính tiền điện 5 bậc từ 01/11/2026</a></li>
+      <li><a href="huong-dan/ho-kinh-doanh-duoi-1-ty-co-phai-nop-thue.html">Hộ kinh doanh doanh thu dưới 1 tỷ có phả…</a></li>
+    </ul></div>
+    <div><b>Về Tính Nhanh</b><ul>
+      <li><a href="gioi-thieu.html">Giới thiệu</a></li>
+      <li><a href="gioi-thieu.html#phuong-phap">Phương pháp & nguồn</a></li>
+      <li><a href="gioi-thieu.html#du-lieu">Quyền riêng tư</a></li>
+      <li><a href="gioi-thieu.html#tiep-thi">Liên kết tiếp thị</a></li>
+    </ul></div>
+  </div>
+  <div class="foot-bottom">© 2026 Tính Nhanh · Số liệu kiểm tra lần cuối 12/11/2026 · Một số liên kết là liên kết tiếp thị và luôn được ghi rõ.</div>
+</div></footer>
 <script type="module" src="assets/ui.js"></script>
 </body>
 </html>

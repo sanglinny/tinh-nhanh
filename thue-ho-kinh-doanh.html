@@ -10,21 +10,24 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
 <meta name="theme-color" content="#0f766e">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=fb4f2e9e">
 </head>
 <body>
 <header class="site"><div class="wrap">
-  <a class="brand" href="index.html">Tính <span>Nhanh</span></a>
-  <nav class="top">
+  <a class="brand" href="index.html"><span class="mark" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="#F2B84B"/></svg></span>Tính <span class="hl">Nhanh</span></a>
+  <nav class="top" aria-label="Chính">
+    <a href="index.html">Công cụ</a>
     <a href="tien-dien.html">Tiền điện</a>
-    <a href="thue-ho-kinh-doanh.html" aria-current="page">Thuế hộ kinh doanh</a>
-    <a href="travel/index.html">Vietnam travel</a>
+    <a href="thue-ho-kinh-doanh.html" aria-current="page">Thuế hộ KD</a>
+    <a href="huong-dan/index.html">Hướng dẫn</a>
+    <a href="travel/index.html">Du lịch</a>
+    <a href="gioi-thieu.html">Giới thiệu</a>
   </nav>
 </div></header>
 
 <main class="wrap">
   <h1>Tính thuế hộ kinh doanh, cá nhân kinh doanh 2026</h1>
-  <p class="lede" id="meta">Đang tải quy định…</p>
+  <p class="lede" id="meta">Doanh thu từ 1.000.000.000 đ/năm trở xuống không phải nộp thuế GTGT và TNCN (Nghị định 141/2026/NĐ-CP, áp dụng từ 01/01/2026). Thuế khoán và lệ phí môn bài đã bỏ.</p>
 
   <section class="card">
     <form class="calc" id="f">
@@ -39,7 +42,21 @@
   </section>
 
   <h2>Cần biết</h2>
-  <div class="card" id="rules"></div>
+  <div class="card" id="rules">
+<!--@tax-rules-->
+<ul><li>Doanh thu ≤ 1 tỷ đồng/năm: không nộp GTGT, TNCN; thông báo doanh thu 1 lần/năm (hạn 31/01 năm sau); không bắt buộc hóa đơn điện tử.</li><li>Doanh thu &gt; 1 tỷ đến 3 tỷ: GTGT = toàn bộ doanh thu × tỷ lệ % ngành; TNCN được CHỌN (a) (doanh thu − 1 tỷ) × tỷ lệ % ngành, hoặc (b) (doanh thu − chi phí) × 15%.</li><li>Doanh thu &gt; 3 tỷ đến 50 tỷ: GTGT theo tỷ lệ % trên doanh thu; TNCN bắt buộc = (doanh thu − chi phí) × 17%.</li><li>Doanh thu &gt; 50 tỷ: GTGT theo tỷ lệ % trên doanh thu; TNCN bắt buộc = (doanh thu − chi phí) × 20%; khai thuế theo tháng.</li><li>Cho thuê bất động sản: TNCN = (doanh thu − 1 tỷ) × 5%, không áp dụng phương pháp thu nhập.</li><li>Doanh thu năm trên 1 tỷ: bắt buộc hóa đơn điện tử có mã của cơ quan thuế hoặc hóa đơn điện tử khởi tạo từ máy tính tiền kết nối dữ liệu với cơ quan thuế (Nghị định 141/2026); dưới mức này được tự nguyện đăng ký.</li><li>Lệ phí môn bài: Bãi bỏ: chấm dứt thu, nộp lệ phí môn bài từ 01/01/2026 (Nghị quyết 198/2025/QH15, Điều 10). Không còn phải nộp cho năm 2026 trở đi.</li></ul>
+<div class="table-scroll"><table><thead><tr><th>Nhóm ngành (phương pháp tỷ lệ %)</th><th class="num">GTGT</th><th class="num">TNCN</th></tr></thead><tbody>
+<tr><td>Phân phối, cung cấp hàng hóa</td><td class="num">1%</td><td class="num">0.5%</td></tr>
+<tr><td>Dịch vụ, xây dựng không bao thầu nguyên vật liệu</td><td class="num">5%</td><td class="num">2%</td></tr>
+<tr><td>Sản xuất, vận tải, dịch vụ có gắn với hàng hóa, xây dựng có bao thầu nguyên vật liệu</td><td class="num">3%</td><td class="num">1.5%</td></tr>
+<tr><td>Hoạt động kinh doanh khác</td><td class="num">2%</td><td class="num">1%</td></tr>
+<tr><td>Cho thuê tài sản; đại lý bảo hiểm, đại lý xổ số, đại lý bán hàng đa cấp (TNCN 5%)</td><td class="num">5%</td><td class="num">5%</td></tr>
+<tr><td>Cho thuê bất động sản (trừ kinh doanh lưu trú)</td><td class="num">5%</td><td class="num">5%</td></tr>
+<tr><td>Sản phẩm, dịch vụ nội dung thông tin số (giải trí, trò chơi điện tử, phim, ảnh, nhạc, quảng cáo số)</td><td class="num">5%</td><td class="num">5%</td></tr>
+</tbody></table></div>
+<p class="muted"><small>Căn cứ: Nghị quyết 198/2025/QH15 (17/05/2025); Luật Thuế thu nhập cá nhân 109/2025/QH15 (10/12/2025); Luật Thuế giá trị gia tăng 48/2024/QH15, sửa đổi bởi Luật 149/2025/QH15 (11/12/2025); Luật 09/2026/QH16 (24/04/2026) sửa đổi Luật Thuế TNCN, GTGT, TNDN, TTĐB; Nghị định 68/2026/NĐ-CP (05/03/2026); Nghị định 141/2026/NĐ-CP (29/04/2026); Luật Quản lý thuế 108/2025/QH15. Kiểm tra ngày 12/11/2026.</small></p>
+<!--/@tax-rules-->
+  </div>
 
   <h2>Gợi ý</h2>
   <div class="aff" data-aff="business-bank" hidden style="margin-bottom:14px">
@@ -60,7 +77,33 @@
   <p class="muted"><small>Công cụ chỉ ước tính theo phương pháp tỷ lệ % trên doanh thu. Không thay thế tư vấn của cơ quan thuế hoặc kế toán.</small></p>
 </main>
 
-<footer class="site"><div class="wrap">Tính Nhanh — công cụ miễn phí, không thu thập dữ liệu bạn nhập. <a href="gioi-thieu.html">Giới thiệu & liên hệ</a></div></footer>
+<footer class="site"><div class="wrap">
+  <div class="foot-grid">
+    <div>
+      <a class="brand" href="index.html" style="color:#fff"><span class="mark" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="#F2B84B"/></svg></span>Tính Nhanh</a>
+      <p style="margin:10px 0 0;max-width:36ch">Công cụ tính toán miễn phí và hướng dẫn dễ hiểu. Mỗi con số đều dẫn nguồn chính thức và ngày kiểm tra.</p>
+    </div>
+    <div><b>Công cụ</b><ul>
+      <li><a href="tien-dien.html">Tính tiền điện</a></li>
+      <li><a href="tien-dien.html#phong-tro">Chia tiền phòng trọ</a></li>
+      <li><a href="thue-ho-kinh-doanh.html">Thuế hộ kinh doanh</a></li>
+      <li><a href="travel/index.html">Vietnam trip planner</a></li>
+    </ul></div>
+    <div><b>Hướng dẫn</b><ul>
+      <li><a href="huong-dan/index.html">Tất cả bài viết</a></li>
+      <li><a href="huong-dan/chia-tien-dien-phong-tro.html">Chia tiền điện phòng trọ đúng quy định 2…</a></li>
+      <li><a href="huong-dan/cach-tinh-tien-dien-5-bac-2026.html">Cách tính tiền điện 5 bậc từ 01/11/2026</a></li>
+      <li><a href="huong-dan/ho-kinh-doanh-duoi-1-ty-co-phai-nop-thue.html">Hộ kinh doanh doanh thu dưới 1 tỷ có phả…</a></li>
+    </ul></div>
+    <div><b>Về Tính Nhanh</b><ul>
+      <li><a href="gioi-thieu.html">Giới thiệu</a></li>
+      <li><a href="gioi-thieu.html#phuong-phap">Phương pháp & nguồn</a></li>
+      <li><a href="gioi-thieu.html#du-lieu">Quyền riêng tư</a></li>
+      <li><a href="gioi-thieu.html#tiep-thi">Liên kết tiếp thị</a></li>
+    </ul></div>
+  </div>
+  <div class="foot-bottom">© 2026 Tính Nhanh · Số liệu kiểm tra lần cuối 12/11/2026 · Một số liên kết là liên kết tiếp thị và luôn được ghi rõ.</div>
+</div></footer>
 
 <script type="module">
 import { loadJSON, vnd, renderSources, escapeHtml, fillAffiliates } from "./assets/common.js";
@@ -72,11 +115,7 @@ catch (e) { document.getElementById("meta").textContent = "Chưa có quy định
 
 document.getElementById("meta").textContent =
   `Doanh thu từ ${vnd(R.exempt_threshold_vnd)}/năm trở xuống không phải nộp thuế GTGT và TNCN (Nghị định 141/2026/NĐ-CP, áp dụng từ 01/01/2026). Thuế khoán và lệ phí môn bài đã bỏ.`;
-document.getElementById("rules").innerHTML =
-  `<ul>${(R.methods || []).map((m) => `<li>${escapeHtml(m)}</li>`).join("")}
-   <li>Căn cứ: ${(R.legal_basis || []).map((b) => escapeHtml(b.doc.split(" – ")[0])).join("; ")}.</li>
-   ${R.license_fee ? `<li>Lệ phí môn bài: ${escapeHtml(R.license_fee)}</li>` : ""}
-   ${R.filing ? `<li>Kê khai: ${escapeHtml(R.filing)}</li>` : ""}</ul>`;
+// The rules block is pre-rendered by build.mjs (visible to search engines and without JS).
 renderSources(document.getElementById("sources"), R.sources, R.verified_at);
 if (R.notes_public) { const n = document.getElementById("notes"); n.textContent = R.notes_public; n.hidden = false; }
 

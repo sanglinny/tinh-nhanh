@@ -10,21 +10,24 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
 <meta name="theme-color" content="#0f766e">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=fb4f2e9e">
 </head>
 <body>
 <header class="site"><div class="wrap">
-  <a class="brand" href="index.html">Tính <span>Nhanh</span></a>
-  <nav class="top">
+  <a class="brand" href="index.html"><span class="mark" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="#F2B84B"/></svg></span>Tính <span class="hl">Nhanh</span></a>
+  <nav class="top" aria-label="Chính">
+    <a href="index.html">Công cụ</a>
     <a href="tien-dien.html" aria-current="page">Tiền điện</a>
-    <a href="thue-ho-kinh-doanh.html">Thuế hộ kinh doanh</a>
-    <a href="travel/index.html">Vietnam travel</a>
+    <a href="thue-ho-kinh-doanh.html">Thuế hộ KD</a>
+    <a href="huong-dan/index.html">Hướng dẫn</a>
+    <a href="travel/index.html">Du lịch</a>
+    <a href="gioi-thieu.html">Giới thiệu</a>
   </nav>
 </div></header>
 
 <main class="wrap">
   <h1>Tính tiền điện sinh hoạt theo bậc thang</h1>
-  <p class="lede" id="tariff-meta">Đang tải biểu giá…</p>
+  <p class="lede" id="tariff-meta">Biểu giá theo Quyết định 2892/QĐ-BCT ngày 31/10/2026 của Bộ Công Thương, áp dụng từ 01/11/2026. Giá chưa gồm 8% VAT; kết quả bên dưới đã cộng VAT.</p>
   <noscript><p class="note">Công cụ cần JavaScript để tính. Hãy bật JavaScript trong trình duyệt.</p></noscript>
 
   <div class="tabs" role="tablist">
@@ -71,6 +74,20 @@
     <p class="disclosure">Tính Nhanh có thể nhận hoa hồng nếu bạn mua qua liên kết này. Giá bạn trả không đổi. Việc giới thiệu không ảnh hưởng đến kết quả tính toán.</p>
   </div>
 
+  <h2>Bảng giá điện sinh hoạt đang áp dụng</h2>
+  <div class="card">
+<!--@tariff-->
+<div class="table-scroll"><table><thead><tr><th>Bậc</th><th>Mức dùng/tháng</th><th class="num">Giá chưa VAT</th><th class="num">Có VAT 8%</th></tr></thead><tbody>
+<tr><td>Bậc 1</td><td>0–100 kWh</td><td class="num">1.901 đ</td><td class="num">2.053 đ</td></tr>
+<tr><td>Bậc 2</td><td>101–200 kWh</td><td class="num">2.289 đ</td><td class="num">2.472 đ</td></tr>
+<tr><td>Bậc 3</td><td>201–400 kWh</td><td class="num">2.894 đ</td><td class="num">3.126 đ</td></tr>
+<tr><td>Bậc 4</td><td>401–700 kWh</td><td class="num">3.456 đ</td><td class="num">3.732 đ</td></tr>
+<tr><td>Bậc 5</td><td>Trên 700 kWh</td><td class="num">3.844 đ</td><td class="num">4.152 đ</td></tr>
+</tbody></table></div>
+<p class="muted"><small>Theo Quyết định 2892/QĐ-BCT ngày 31/10/2026 của Bộ Công Thương (thay biểu giá 6 bậc theo QĐ 1279/QĐ-BCT ngày 09/05/2025), áp dụng từ 01/11/2026. Ví dụ: 300 kWh = 708.400 đ chưa VAT. Kiểm tra ngày 12/11/2026.</small></p>
+<!--/@tariff-->
+  </div>
+
   <h2>Quy định cho người thuê nhà</h2>
   <div class="card"><ul id="renter-rules"></ul></div>
 
@@ -79,7 +96,33 @@
   <p class="muted"><small>Kết quả là ước tính để tham khảo. Số tiền chính xác theo hóa đơn của đơn vị điện lực.</small></p>
 </main>
 
-<footer class="site"><div class="wrap">Tính Nhanh — công cụ miễn phí, không thu thập dữ liệu bạn nhập. <a href="gioi-thieu.html">Giới thiệu & liên hệ</a></div></footer>
+<footer class="site"><div class="wrap">
+  <div class="foot-grid">
+    <div>
+      <a class="brand" href="index.html" style="color:#fff"><span class="mark" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="#F2B84B"/></svg></span>Tính Nhanh</a>
+      <p style="margin:10px 0 0;max-width:36ch">Công cụ tính toán miễn phí và hướng dẫn dễ hiểu. Mỗi con số đều dẫn nguồn chính thức và ngày kiểm tra.</p>
+    </div>
+    <div><b>Công cụ</b><ul>
+      <li><a href="tien-dien.html">Tính tiền điện</a></li>
+      <li><a href="tien-dien.html#phong-tro">Chia tiền phòng trọ</a></li>
+      <li><a href="thue-ho-kinh-doanh.html">Thuế hộ kinh doanh</a></li>
+      <li><a href="travel/index.html">Vietnam trip planner</a></li>
+    </ul></div>
+    <div><b>Hướng dẫn</b><ul>
+      <li><a href="huong-dan/index.html">Tất cả bài viết</a></li>
+      <li><a href="huong-dan/chia-tien-dien-phong-tro.html">Chia tiền điện phòng trọ đúng quy định 2…</a></li>
+      <li><a href="huong-dan/cach-tinh-tien-dien-5-bac-2026.html">Cách tính tiền điện 5 bậc từ 01/11/2026</a></li>
+      <li><a href="huong-dan/ho-kinh-doanh-duoi-1-ty-co-phai-nop-thue.html">Hộ kinh doanh doanh thu dưới 1 tỷ có phả…</a></li>
+    </ul></div>
+    <div><b>Về Tính Nhanh</b><ul>
+      <li><a href="gioi-thieu.html">Giới thiệu</a></li>
+      <li><a href="gioi-thieu.html#phuong-phap">Phương pháp & nguồn</a></li>
+      <li><a href="gioi-thieu.html#du-lieu">Quyền riêng tư</a></li>
+      <li><a href="gioi-thieu.html#tiep-thi">Liên kết tiếp thị</a></li>
+    </ul></div>
+  </div>
+  <div class="foot-bottom">© 2026 Tính Nhanh · Số liệu kiểm tra lần cuối 12/11/2026 · Một số liên kết là liên kết tiếp thị và luôn được ghi rõ.</div>
+</div></footer>
 
 <script type="module">
 import { loadJSON, vnd, num, renderSources, escapeHtml, fillAffiliates } from "./assets/common.js";

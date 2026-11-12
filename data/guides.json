@@ -1,0 +1,14 @@
+{
+  "note": "Guide manifest. build.mjs renders the guide index, homepage 'latest guides', article meta/cover/related blocks and the sitemap from this list. Newest first.",
+  "categories": {
+    "dien": {"label": "Điện & gia đình", "color": "#0B6B63", "soft": "#E3F1EE"},
+    "thue": {"label": "Thuế & kinh doanh", "color": "#A96812", "soft": "#FFF4DC"},
+    "dulich": {"label": "Du lịch Việt Nam", "color": "#1F5FA8", "soft": "#E6EEF9"}
+  },
+  "guides": [
+    {"path": "huong-dan/chia-tien-dien-phong-tro.html", "title": "Chia tiền điện phòng trọ đúng quy định 2026", "excerpt": "4 người = 1 hộ, chủ nhà không được thu vượt hóa đơn. Ví dụ chia một hóa đơn cho 3 phòng.", "category": "dien", "updated": "2026-11-12", "tool": "tien-dien.html#phong-tro", "toolLabel": "Chia tiền phòng trọ"},
+    {"path": "huong-dan/cach-tinh-tien-dien-5-bac-2026.html", "title": "Cách tính tiền điện 5 bậc từ 01/11/2026", "excerpt": "Bảng giá từng bậc theo QĐ 2892/QĐ-BCT, cách cộng VAT 8% và ví dụ 150, 300, 500 kWh.", "category": "dien", "updated": "2026-11-12", "tool": "tien-dien.html", "toolLabel": "Tính tiền điện"},
+    {"path": "huong-dan/ho-kinh-doanh-duoi-1-ty-co-phai-nop-thue.html", "title": "Hộ kinh doanh doanh thu dưới 1 tỷ có phải nộp thuế 2026?", "excerpt": "Ngưỡng 1 tỷ theo NĐ 141/2026, việc vẫn phải làm và ví dụ 800 triệu, 1,5 tỷ, 2 tỷ.", "category": "thue", "updated": "2026-11-12", "tool": "thue-ho-kinh-doanh.html", "toolLabel": "Tính thuế hộ kinh doanh"},
+    {"path": "travel/do-i-need-a-visa-for-vietnam.html", "title": "Do I need a visa for Vietnam? (2026 rules by passport)", "excerpt": "45-day visa-free groups, ASEAN rules, the official 90-day e-visa and how to avoid look-alike sites.", "category": "dulich", "updated": "2026-11-12", "tool": "travel/index.html", "toolLabel": "Plan your Vietnam trip", "lang": "en"}
+  ]
+}

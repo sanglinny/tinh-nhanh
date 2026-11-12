@@ -27,7 +27,8 @@ function start() {
   const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
   camera.position.set(0, 1.2, 9);
 
-  const accent = new THREE.Color(css("--accent") || "#0f766e");
+  // The hero sits on a dark band, so use a bright teal for the scene regardless of page theme.
+  const accent = new THREE.Color("#3CC2B2");
   const warm = new THREE.Color("#f2b544");
 
   scene.add(new THREE.HemisphereLight(0xffffff, 0x223330, 1.1));

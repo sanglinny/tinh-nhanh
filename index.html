@@ -3,82 +3,183 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tính Nhanh — tiền điện, thuế hộ kinh doanh, du lịch Việt Nam</title>
-<meta name="description" content="Tính tiền điện bậc thang mới, chia tiền điện phòng trọ, thuế hộ kinh doanh 2026 (ngưỡng 1 tỷ) và công cụ lên kế hoạch du lịch Việt Nam. Miễn phí, ghi rõ nguồn văn bản.">
-<meta property="og:title" content="Tính Nhanh — công cụ tính toán theo quy định mới">
+<title>Tính Nhanh — tính tiền điện, thuế hộ kinh doanh 2026 và lên kế hoạch du lịch Việt Nam</title>
+<meta name="description" content="Công cụ miễn phí: tính tiền điện biểu giá 5 bậc từ 01/11/2026, chia tiền điện phòng trọ, thuế hộ kinh doanh 2026 (ngưỡng 1 tỷ) và lập kế hoạch du lịch Việt Nam. Mỗi con số dẫn văn bản gốc.">
+<link rel="canonical" href="https://sanglinny.github.io/tinh-nhanh/">
+<meta property="og:title" content="Tính Nhanh — Tính đúng. Hiểu rõ. Quyết định tốt hơn.">
 <meta property="og:description" content="Tiền điện 5 bậc, thuế hộ kinh doanh 2026, kế hoạch du lịch Việt Nam. Miễn phí, có nguồn.">
-<meta name="theme-color" content="#0f766e">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="assets/style.css">
+<meta name="theme-color" content="#0B6B63">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/style.css?v=fb4f2e9e">
 <script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js" } }</script>
 </head>
 <body>
 <header class="site"><div class="wrap">
-  <a class="brand" href="index.html">Tính <span>Nhanh</span></a>
-  <nav class="top">
+  <a class="brand" href="index.html"><span class="mark" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="#F2B84B"/></svg></span>Tính <span class="hl">Nhanh</span></a>
+  <nav class="top" aria-label="Chính">
+    <a href="index.html" aria-current="page">Công cụ</a>
     <a href="tien-dien.html">Tiền điện</a>
-    <a href="thue-ho-kinh-doanh.html">Thuế hộ kinh doanh</a>
-    <a href="travel/index.html">Vietnam travel</a>
+    <a href="thue-ho-kinh-doanh.html">Thuế hộ KD</a>
+    <a href="huong-dan/index.html">Hướng dẫn</a>
+    <a href="travel/index.html">Du lịch</a>
+    <a href="gioi-thieu.html">Giới thiệu</a>
   </nav>
 </div></header>
 
 <main class="wrap">
   <section class="hero">
-    <div class="hero-copy">
-      <span class="eyebrow">Cập nhật tháng 11/2026</span>
-      <h1>Tính đúng theo quy định mới, trong vài giây</h1>
-      <p class="lede">Chọn công cụ bên dưới. Mỗi con số đều dẫn văn bản gốc và ngày kiểm tra.</p>
-      <div class="trust"><span>Miễn phí</span><span>Không cần đăng nhập</span><span>Không lưu dữ liệu bạn nhập</span></div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="chip">Cập nhật quy định tháng 11/2026</span>
+        <h1 style="margin-top:14px">Tính đúng. Hiểu rõ.<br><em>Quyết định tốt hơn.</em></h1>
+        <p class="lede">Công cụ miễn phí cho tiền điện, thuế hộ kinh doanh và chuyến đi Việt Nam. Kết quả dễ hiểu, cách tính minh bạch, nguồn văn bản rõ ràng.</p>
+        <div class="search" role="search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="tool-search" type="search" placeholder="Bạn muốn tính gì hôm nay?" autocomplete="off" aria-label="Tìm công cụ hoặc bài hướng dẫn">
+          <div class="search-results" id="search-results" hidden></div>
+        </div>
+        <div class="trust"><span>Miễn phí</span><span>Không cần tài khoản</span><span>Không lưu dữ liệu bạn nhập</span></div>
+      </div>
+      <div id="hero3d" aria-hidden="true"></div>
     </div>
-
-    <div class="grid">
-      <a class="card tilt" href="tien-dien.html">
-        <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>
-        <span class="tag">Biểu giá từ 01/11/2026</span>
-        <h3>Tiền điện & phòng trọ</h3>
-        <p>Giá 5 bậc, đã gồm VAT. Chia tiền điện phòng trọ đúng quy định người thuê.</p>
-        <span class="cta">Tính tiền điện →</span>
-      </a>
-      <a class="card tilt" href="thue-ho-kinh-doanh.html">
-        <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12v20l-3-2-3 2-3-2-3 2z"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></span>
-        <span class="tag">Ngưỡng 1 tỷ — NĐ 141/2026</span>
-        <h3>Thuế hộ kinh doanh 2026</h3>
-        <p>GTGT, TNCN và so sánh hai cách tính khi doanh thu từ 1 đến 3 tỷ.</p>
-        <span class="cta">Tính thuế →</span>
-      </a>
-      <a class="card tilt" href="travel/index.html">
-        <span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></span>
-        <span class="tag">Rules checked Nov 2026</span>
-        <h3>Plan your Vietnam trip</h3>
-        <p>Visa-free days by passport, official e-visa, eSIM and a day-by-day route.</p>
-        <span class="cta">Plan my trip →</span>
-      </a>
-    </div>
-    <div id="hero3d" aria-hidden="true"></div>
   </section>
 
-  <h2>Hướng dẫn</h2>
+  <div class="stats" aria-label="Số liệu đang áp dụng">
+    <div><b>5 bậc</b><span>Giá điện sinh hoạt từ 01/11/2026</span></div>
+    <div><b>1 tỷ đ</b><span>Ngưỡng miễn thuế hộ kinh doanh/năm</span></div>
+    <div><b>4 người</b><span>= 1 hộ khi tính điện cho người thuê</span></div>
+    <div><b>90 ngày</b><span>E-visa Việt Nam cho mọi quốc tịch</span></div>
+  </div>
+
+  <div class="section-head" id="cong-cu"><h2>Công cụ nổi bật</h2></div>
   <div class="grid">
-    <a class="card" href="huong-dan/cach-tinh-tien-dien-5-bac-2026.html">
-      <h3>Cách tính tiền điện 5 bậc từ 01/11/2026</h3>
-      <p>Bảng giá từng bậc, cách cộng VAT 8% và ví dụ cho 150, 300, 500 kWh.</p>
+    <a class="card tool-card" href="tien-dien.html">
+      <span class="top"><span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span><span class="chip">Miễn phí</span></span>
+      <h3>Tính tiền điện & phòng trọ</h3>
+      <p>Biểu giá 5 bậc, đã gồm VAT. Chia tiền điện phòng trọ theo đúng quy định người thuê.</p>
+      <span class="meta">Biểu giá QĐ 2892/QĐ-BCT · từ 01/11/2026</span>
+      <span class="cta">Sử dụng công cụ →</span>
     </a>
-    <a class="card" href="huong-dan/chia-tien-dien-phong-tro.html">
-      <h3>Chia tiền điện phòng trọ đúng quy định</h3>
-      <p>4 người = 1 hộ, chủ nhà không được thu vượt hóa đơn. Ví dụ chia cho 3 phòng.</p>
+    <a class="card tool-card" href="thue-ho-kinh-doanh.html">
+      <span class="top"><span class="icon" style="background:var(--accent-soft);color:var(--warning)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12v20l-3-2-3 2-3-2-3 2z"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></span><span class="chip">Miễn phí</span></span>
+      <h3>Thuế hộ kinh doanh 2026</h3>
+      <p>GTGT, TNCN theo ngành nghề; so sánh hai cách tính khi doanh thu 1–3 tỷ.</p>
+      <span class="meta">Ngưỡng 1 tỷ · NĐ 141/2026/NĐ-CP</span>
+      <span class="cta">Sử dụng công cụ →</span>
     </a>
-    <a class="card" href="huong-dan/ho-kinh-doanh-duoi-1-ty-co-phai-nop-thue.html">
-      <h3>Doanh thu dưới 1 tỷ có phải nộp thuế?</h3>
-      <p>Ngưỡng 1 tỷ năm 2026, việc vẫn phải làm và ví dụ 800 triệu, 1,5 tỷ, 2 tỷ.</p>
+    <a class="card tool-card" href="travel/index.html">
+      <span class="top"><span class="icon" style="background:#E6EEF9;color:#1F5FA8"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></span><span class="chip">Free · EN</span></span>
+      <h3>Plan your Vietnam trip</h3>
+      <p>Visa-free days by passport, the official e-visa, eSIM and a day-by-day route.</p>
+      <span class="meta">Rules checked Nov 2026</span>
+      <span class="cta">Plan my trip →</span>
     </a>
+  </div>
+
+  <div class="section-head"><h2>Danh mục</h2></div>
+  <div class="cats">
+    <a class="cat" href="huong-dan/index.html#dien"><span class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="m3 11 9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></span><span><b>Gia đình & chi phí</b><small>Tiền điện, phòng trọ</small></span></a>
+    <a class="cat" href="huong-dan/index.html#thue"><span class="icon" style="background:var(--accent-soft);color:var(--warning)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12v20l-3-2-3 2-3-2-3 2z"/><path d="M9 7h6M9 11h6"/></svg></span><span><b>Kinh doanh & thuế</b><small>Hộ kinh doanh 2026</small></span></a>
+    <a class="cat" href="huong-dan/index.html#dulich"><span class="icon" style="background:#E6EEF9;color:#1F5FA8"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18"/></svg></span><span><b>Du lịch Việt Nam</b><small>Visa, lịch trình, eSIM</small></span></a>
+  </div>
+
+  <div class="section-head"><h2>Hướng dẫn mới</h2><a href="huong-dan/index.html">Xem tất cả →</a></div>
+  <div class="grid">
+<!--@latest-->
+<a class="card guide-card" href="huong-dan/chia-tien-dien-phong-tro.html" data-cat="dien">
+  <img class="cover" src="assets/covers/chia-tien-dien-phong-tro.svg" alt="" loading="lazy" width="1200" height="675">
+  <span class="body">
+    <span class="chip" style="background:#E3F1EE;color:#0B6B63">Điện &amp; gia đình</span>
+    <h3>Chia tiền điện phòng trọ đúng quy định 2026</h3>
+    <p>4 người = 1 hộ, chủ nhà không được thu vượt hóa đơn. Ví dụ chia một hóa đơn cho 3 phòng.</p>
+    <span class="meta"><span>Cập nhật 12/11/2026</span><span>6 phút đọc</span></span>
+  </span>
+</a>
+<a class="card guide-card" href="huong-dan/cach-tinh-tien-dien-5-bac-2026.html" data-cat="dien">
+  <img class="cover" src="assets/covers/cach-tinh-tien-dien-5-bac-2026.svg" alt="" loading="lazy" width="1200" height="675">
+  <span class="body">
+    <span class="chip" style="background:#E3F1EE;color:#0B6B63">Điện &amp; gia đình</span>
+    <h3>Cách tính tiền điện 5 bậc từ 01/11/2026</h3>
+    <p>Bảng giá từng bậc theo QĐ 2892/QĐ-BCT, cách cộng VAT 8% và ví dụ 150, 300, 500 kWh.</p>
+    <span class="meta"><span>Cập nhật 12/11/2026</span><span>5 phút đọc</span></span>
+  </span>
+</a>
+<a class="card guide-card" href="huong-dan/ho-kinh-doanh-duoi-1-ty-co-phai-nop-thue.html" data-cat="thue">
+  <img class="cover" src="assets/covers/ho-kinh-doanh-duoi-1-ty-co-phai-nop-thue.svg" alt="" loading="lazy" width="1200" height="675">
+  <span class="body">
+    <span class="chip" style="background:#FFF4DC;color:#A96812">Thuế &amp; kinh doanh</span>
+    <h3>Hộ kinh doanh doanh thu dưới 1 tỷ có phải nộp thuế 2026?</h3>
+    <p>Ngưỡng 1 tỷ theo NĐ 141/2026, việc vẫn phải làm và ví dụ 800 triệu, 1,5 tỷ, 2 tỷ.</p>
+    <span class="meta"><span>Cập nhật 12/11/2026</span><span>7 phút đọc</span></span>
+  </span>
+</a>
+<!--/@latest-->
+  </div>
+
+  <div class="section-head"><h2>Vì sao dùng Tính Nhanh?</h2></div>
+  <div class="card why">
+    <div><span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></span><b>Miễn phí, không cần tài khoản</b><p>Mở là dùng. Không quảng cáo chen giữa biểu mẫu và kết quả.</p></div>
+    <div><span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 19V5"/></svg></span><b>Cách tính minh bạch</b><p>Mỗi kết quả có bảng phân rã từng bậc, từng loại thuế.</p></div>
+    <div><span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 3 6v6c0 5 4 9 9 10 5-1 9-5 9-10V6z"/></svg></span><b>Nguồn văn bản rõ ràng</b><p>Dẫn quyết định, nghị định và ngày kiểm tra số liệu.</p></div>
+    <div><span class="icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></span><b>Dữ liệu của bạn ở lại máy bạn</b><p>Phép tính chạy trên trình duyệt, không gửi đi đâu.</p></div>
   </div>
 </main>
 
-<footer class="site"><div class="wrap">Tính Nhanh — công cụ miễn phí. Một số trang có liên kết tiếp thị và được ghi rõ. <a href="gioi-thieu.html">Giới thiệu & liên hệ</a></div></footer>
+<footer class="site"><div class="wrap">
+  <div class="foot-grid">
+    <div>
+      <a class="brand" href="index.html" style="color:#fff"><span class="mark" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z" fill="#F2B84B"/></svg></span>Tính Nhanh</a>
+      <p style="margin:10px 0 0;max-width:36ch">Công cụ tính toán miễn phí và hướng dẫn dễ hiểu. Mỗi con số đều dẫn nguồn chính thức và ngày kiểm tra.</p>
+    </div>
+    <div><b>Công cụ</b><ul>
+      <li><a href="tien-dien.html">Tính tiền điện</a></li>
+      <li><a href="tien-dien.html#phong-tro">Chia tiền phòng trọ</a></li>
+      <li><a href="thue-ho-kinh-doanh.html">Thuế hộ kinh doanh</a></li>
+      <li><a href="travel/index.html">Vietnam trip planner</a></li>
+    </ul></div>
+    <div><b>Hướng dẫn</b><ul>
+      <li><a href="huong-dan/index.html">Tất cả bài viết</a></li>
+      <li><a href="huong-dan/chia-tien-dien-phong-tro.html">Chia tiền điện phòng trọ đúng quy định 2…</a></li>
+      <li><a href="huong-dan/cach-tinh-tien-dien-5-bac-2026.html">Cách tính tiền điện 5 bậc từ 01/11/2026</a></li>
+      <li><a href="huong-dan/ho-kinh-doanh-duoi-1-ty-co-phai-nop-thue.html">Hộ kinh doanh doanh thu dưới 1 tỷ có phả…</a></li>
+    </ul></div>
+    <div><b>Về Tính Nhanh</b><ul>
+      <li><a href="gioi-thieu.html">Giới thiệu</a></li>
+      <li><a href="gioi-thieu.html#phuong-phap">Phương pháp & nguồn</a></li>
+      <li><a href="gioi-thieu.html#du-lieu">Quyền riêng tư</a></li>
+      <li><a href="gioi-thieu.html#tiep-thi">Liên kết tiếp thị</a></li>
+    </ul></div>
+  </div>
+  <div class="foot-bottom">© 2026 Tính Nhanh · Số liệu kiểm tra lần cuối 12/11/2026 · Một số liên kết là liên kết tiếp thị và luôn được ghi rõ.</div>
+</div></footer>
 <script type="module" src="assets/ui.js"></script>
 <script type="module" src="assets/hero3d.js"></script>
+<script type="module">
+// Tool & guide search: a small static index, filtered as you type.
+const INDEX = [
+  { t: "Tính tiền điện theo bậc thang", k: "tiền điện điện kwh hóa đơn evn bậc thang 5 bậc vat", u: "tien-dien.html", d: "Công cụ" },
+  { t: "Chia tiền điện phòng trọ", k: "phòng trọ người thuê chủ nhà chia điện nhà trọ", u: "tien-dien.html#phong-tro", d: "Công cụ" },
+  { t: "Tính thuế hộ kinh doanh 2026", k: "thuế hộ kinh doanh gtgt tncn doanh thu 1 tỷ bán hàng", u: "thue-ho-kinh-doanh.html", d: "Công cụ" },
+  { t: "Plan your Vietnam trip", k: "du lịch visa e-visa esim lịch trình travel vietnam", u: "travel/index.html", d: "Tool (EN)" },
+  { t: "Cách tính tiền điện 5 bậc từ 01/11/2026", k: "giá điện 2026 bảng giá điện cách tính", u: "huong-dan/cach-tinh-tien-dien-5-bac-2026.html", d: "Hướng dẫn" },
+  { t: "Chia tiền điện phòng trọ đúng quy định", k: "phòng trọ 4 người 1 hộ quy định", u: "huong-dan/chia-tien-dien-phong-tro.html", d: "Hướng dẫn" },
+  { t: "Hộ kinh doanh dưới 1 tỷ có phải nộp thuế?", k: "thuế hộ kinh doanh dưới 1 tỷ miễn thuế", u: "huong-dan/ho-kinh-doanh-duoi-1-ty-co-phai-nop-thue.html", d: "Hướng dẫn" },
+  { t: "Do I need a visa for Vietnam?", k: "visa vietnam visa free e-visa passport", u: "travel/do-i-need-a-visa-for-vietnam.html", d: "Guide (EN)" },
+];
+const norm = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/đ/g, "d");
+const input = document.getElementById("tool-search"), box = document.getElementById("search-results");
+input.addEventListener("input", () => {
+  const q = norm(input.value.trim());
+  if (!q) { box.hidden = true; return; }
+  const hits = INDEX.filter((x) => q.split(/\s+/).every((w) => norm(x.t + " " + x.k).includes(w))).slice(0, 6);
+  box.innerHTML = hits.length ? hits.map((h) => `<a href="${h.u}">${h.t}<small>${h.d}</small></a>`).join("") : `<a href="huong-dan/index.html">Chưa có kết quả — xem tất cả hướng dẫn<small>Hướng dẫn</small></a>`;
+  box.hidden = false;
+});
+input.addEventListener("keydown", (e) => { if (e.key === "Enter") { const a = box.querySelector("a"); if (a) location.href = a.getAttribute("href"); } });
+document.addEventListener("click", (e) => { if (!e.target.closest(".search")) box.hidden = true; });
+</script>
 </body>
 </html>
