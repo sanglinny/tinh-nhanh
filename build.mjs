@@ -131,7 +131,8 @@ function wordsIn(html) {
 }
 function readingMin(rel) {
   const html = read(rel);
-  const body = (html.match(/<article[\s\S]*?<\/article>/) || [html])[0];
+  const body = (html.match(/<article[\s\S]*?<\/article>/) || [html])[0]
+    .replace(/<!--@(post-meta|related)-->[\s\S]*?<!--\/@\1-->/g, " "); // ignore build-generated blocks
   return Math.max(1, Math.round(wordsIn(body) / 220));
 }
 const coverName = (g) => basename(g.path, ".html") + ".svg";
@@ -142,7 +143,7 @@ function guideCard(g, p, feature = false) {
   return `<a class="card guide-card${feature ? " guide-feature" : ""}" href="${p}${g.path}" data-cat="${g.category}">
   <img class="cover" src="${p}assets/covers/${coverName(g)}" alt="" loading="lazy" width="1200" height="675">
   <span class="body">
-    <span class="chip" style="background:${c.soft};color:${c.color}">${esc(c.label)}</span>
+    <span class="chip" style="background:${c.soft};color:${c.color}">${esc(en && c.label_en ? c.label_en : c.label)}</span>
     <h3>${esc(g.title)}</h3>
     <p>${esc(g.excerpt)}</p>
     <span class="meta"><span>${en ? "Updated" : "Cập nhật"} ${dmy(g.updated)}</span><span>${readingMin(g.path)} ${en ? "min read" : "phút đọc"}</span></span>
@@ -172,13 +173,13 @@ ${glyph}
 function postMeta(g, p) {
   const c = G.categories[g.category];
   const en = g.lang === "en";
-  return `<div class="post-meta"><span class="chip" style="background:${c.soft};color:${c.color}">${esc(c.label)}</span><span>${en ? "Updated" : "Cập nhật"} ${dmy(g.updated)}</span><span>${readingMin(g.path)} ${en ? "min read" : "phút đọc"}</span><span>${en ? "Edited by Tính Nhanh" : "Biên tập: Tính Nhanh"}</span></div>
+  return `<div class="post-meta"><span class="chip" style="background:${c.soft};color:${c.color}">${esc(en && c.label_en ? c.label_en : c.label)}</span><span>${en ? "Updated" : "Cập nhật"} ${dmy(g.updated)}</span><span>${readingMin(g.path)} ${en ? "min read" : "phút đọc"}</span><span>${en ? "Edited by Tính Nhanh" : "Biên tập: Tính Nhanh"}</span></div>
 <figure class="post-cover" style="margin:0 0 22px"><img src="${p}assets/covers/${coverName(g)}" alt="" width="1200" height="675"></figure>`;
 }
 
 function related(g, p) {
   const en = g.lang === "en";
-  const others = G.guides.filter((x) => x.path !== g.path).sort((a, b) => (b.category === g.category) - (a.category === g.category)).slice(0, 2);
+  const others = G.guides.filter((x) => x.path !== g.path).sort((a, b) => ((b.category === g.category) * 2 + ((b.lang || "vi") === (g.lang || "vi"))) - ((a.category === g.category) * 2 + ((a.lang || "vi") === (g.lang || "vi")))).slice(0, 2);
   return `<section class="related">
   <a class="card tool-card" href="${p}${g.tool}" style="background:var(--primary-soft);border-color:transparent">
     <span class="top"><span class="icon">${g.category === "thue" ? ICON.receipt : g.category === "dulich" ? ICON.globe : ICON.bolt}</span><span class="chip">${en ? "Free tool" : "Miễn phí"}</span></span>

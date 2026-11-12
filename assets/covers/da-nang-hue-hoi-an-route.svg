@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-label="Du lịch Việt Nam">
+<rect width="1200" height="675" fill="#E6EEF9"/>
+<circle cx="941" cy="181" r="221" fill="#1F5FA8" opacity=".10"/>
+<circle cx="221" cy="559" r="121" fill="#F2B84B" opacity=".18"/>
+<rect x="80" y="80" width="120" height="14" rx="7" fill="#1F5FA8" opacity=".25"/>
+<circle cx="590" cy="330" r="190" fill="#fff" stroke="#1F5FA8" stroke-width="14"/><path d="M400 330h380M590 140c90 100 90 280 0 380M590 140c-90 100-90 280 0 380" stroke="#1F5FA8" stroke-width="12" fill="none"/><path d="M700 210l120-40-40 120-30-50z" fill="#F2B84B"/>
+</svg>

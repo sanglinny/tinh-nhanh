@@ -3,9 +3,10 @@
   "categories": {
     "dien": {"label": "Điện & gia đình", "color": "#0B6B63", "soft": "#E3F1EE"},
     "thue": {"label": "Thuế & kinh doanh", "color": "#A96812", "soft": "#FFF4DC"},
-    "dulich": {"label": "Du lịch Việt Nam", "color": "#1F5FA8", "soft": "#E6EEF9"}
+    "dulich": {"label": "Du lịch Việt Nam", "label_en": "Vietnam travel", "color": "#1F5FA8", "soft": "#E6EEF9"}
   },
   "guides": [
+    {"path": "travel/da-nang-hue-hoi-an-route.html", "title": "Da Nang – Hue – Hoi An: how to get between them in 2026", "excerpt": "Train over the Hai Van coast, car via the tunnel, airport to Hoi An, 2026 ticket prices for Hue and Hoi An, rainy season and a 5-day plan.", "category": "dulich", "updated": "2026-11-12", "tool": "travel/index.html", "toolLabel": "Plan your Vietnam trip", "lang": "en"},
     {"path": "huong-dan/thue-ho-kinh-doanh-doanh-thu-1-5-ty.html", "title": "Doanh thu hộ kinh doanh 1,5 tỷ: cách tính GTGT và thuế TNCN 2026", "excerpt": "Bảng thuế cho từng nhóm ngành ở mức 1,5 tỷ, khi nào nên chọn cách tính 15% theo thu nhập và ví dụ vừa bán hàng vừa làm dịch vụ.", "category": "thue", "updated": "2026-11-12", "tool": "thue-ho-kinh-doanh.html", "toolLabel": "Tính thuế hộ kinh doanh"},
     {"path": "huong-dan/chia-tien-dien-phong-tro.html", "title": "Chia tiền điện phòng trọ đúng quy định 2026", "excerpt": "4 người = 1 hộ, chủ nhà không được thu vượt hóa đơn. Ví dụ chia một hóa đơn cho 3 phòng.", "category": "dien", "updated": "2026-11-12", "tool": "tien-dien.html#phong-tro", "toolLabel": "Chia tiền phòng trọ"},
     {"path": "huong-dan/cach-tinh-tien-dien-5-bac-2026.html", "title": "Cách tính tiền điện 5 bậc từ 01/11/2026", "excerpt": "Bảng giá từng bậc theo QĐ 2892/QĐ-BCT, cách cộng VAT 8% và ví dụ 150, 300, 500 kWh.", "category": "dien", "updated": "2026-11-12", "tool": "tien-dien.html", "toolLabel": "Tính tiền điện"},
