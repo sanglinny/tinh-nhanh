@@ -7,7 +7,8 @@
     "trains": {"title": "Train tickets in Vietnam", "text": "Hanoi – Hue – Da Nang – Saigon on the Reunification line. Compare times and seats.", "cta": "See train times on Trip.com", "url": "https://shorten.asia/Fq1y61Pn"},
     "bus-central": {"title": "Da Nang – Hue – Hoi An by coach", "text": "Hai Van runs scheduled coaches and airport transfers in central Vietnam.", "cta": "Check Hai Van routes", "url": "https://shorten.asia/32bURCPJ"},
     "tours": {"title": "Tours & activities", "text": "Ha Long cruises, Mekong day trips, cooking classes and more.", "cta": "Browse tours on GetYourGuide", "url": "https://shorten.asia/4Bj3atFM"},
-    "esim": {"title": "Vietnam eSIM", "text": "Get mobile data the moment you land.", "cta": "Compare eSIM plans", "url": ""},
+    "esim": {"title": "Vietnam eSIM", "text": "Get mobile data the moment you land — install before you fly (needs an eSIM-capable, unlocked phone).", "cta": "See Vietnam eSIMs on Klook", "url": "https://shorten.asia/Dj8GRmEc"},
+    "bus-tickets": {"title": "Bus tickets across Vietnam", "text": "Sleeper buses and limousine vans between cities.", "cta": "Search bus tickets", "url": ""},
     "insurance": {"title": "Travel medical insurance", "text": "Cover for trips in Vietnam and Southeast Asia.", "cta": "Get a quote", "url": ""}
   }
 }
